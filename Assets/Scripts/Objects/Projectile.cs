@@ -63,6 +63,7 @@ namespace game.Objects
             var paraClone = parameters.Clone();
 
             projectile.Parameters = paraClone;
+            projGO.tag = "Projectile";
             projGO.transform.rotation = rotation;
             projGO.transform.localPosition = projParent.transform.position;
             projGO.transform.SetParent(projParent.transform);
@@ -74,6 +75,16 @@ namespace game.Objects
         {
             timer += Time.deltaTime * Parameters.OrbitSpeed;
             transform.localPosition = new Vector2(transform.localPosition.x + (Parameters.Speed * Time.deltaTime), Mathf.Sin(timer + Parameters.OrbitOffset) * Parameters.OrbitLength);
+        }
+
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Enemy")
+            {
+                Enemy enemy = collision.GetComponent<Enemy>();
+                enemy.TakeDamage(Parameters.Damage);
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -23,12 +23,8 @@ namespace game
         private SpriteState state = SpriteState.Down;
 
         public Sprite[] MoveRight;
-        public Sprite[] MoveUp;
-        public Sprite[] MoveDown;
 
         private int _rightLength;
-        private int _upLength;
-        private int _downLength;
 
         private int animationCount;
         private float timer = 0;
@@ -39,8 +35,6 @@ namespace game
         {
             renderer = GetComponent<SpriteRenderer>();
             _rightLength = MoveRight.Length;
-            _upLength = MoveUp.Length;
-            _downLength = MoveDown.Length;
         }
 
         private void Update()
@@ -76,15 +70,6 @@ namespace game
                     renderer.sprite = MoveRight[0];
                     renderer.flipX = true;
                     break;
-                case SpriteState.IdleUp:
-                    renderer.sprite = MoveUp[0];
-                    renderer.flipX = false;
-                    break;
-                case SpriteState.IdleDown:
-                    renderer.sprite = MoveDown[0];
-                    renderer.flipX = false;
-                    break;
-
 
 
                 case SpriteState.Right:
@@ -98,21 +83,8 @@ namespace game
                         animationCount = 0;
                     renderer.sprite = MoveRight[animationCount];
                     renderer.flipX = true;
-                    break;
-                case SpriteState.Up:
-                    if (animationCount >= _upLength)
-                        animationCount = 0;
-                    renderer.sprite = MoveUp[animationCount];
-                    renderer.flipX = false;
-                    break;
-                case SpriteState.Down:
-                    if (animationCount >= _downLength)
-                        animationCount = 0;
-                    renderer.sprite = MoveDown[animationCount];
-                    renderer.flipX = false;
-                    break;              
+                    break;             
             }
         }
-
     }
 }
