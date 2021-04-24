@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b62570d1993306a4fb1d16c22a4ff3ac
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Cvvpro
+  fontNames:
+  - Cvvpro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: cc9c56fbb0eceaa49980545f1e9afd32, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
