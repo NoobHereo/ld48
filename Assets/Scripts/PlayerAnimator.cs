@@ -3,7 +3,7 @@ using game.Objects;
 
 namespace game
 {
-    public enum SpriteState
+    public enum PlayerSpriteState
     {
         IdleRight,
         IdleLeft,
@@ -20,7 +20,7 @@ namespace game
         private SpriteRenderer renderer;
         public Player player;
 
-        private SpriteState state = SpriteState.Down;
+        private PlayerSpriteState state = PlayerSpriteState.Down;
 
         public Sprite[] MoveRight;
 
@@ -47,7 +47,7 @@ namespace game
             animationCount++;
         }
 
-        public void UpdateSprite(SpriteState spriteState)
+        public void UpdateSprite(PlayerSpriteState spriteState)
         {
             // Debug.Log("Setting sprite state: " + spriteState);
             if (spriteState == state)
@@ -62,23 +62,23 @@ namespace game
             switch(state)
             {              
 
-                case SpriteState.IdleRight:
+                case PlayerSpriteState.IdleRight:
                     renderer.sprite = MoveRight[0];
                     renderer.flipX = false;
                     break;
-                case SpriteState.IdleLeft:
+                case PlayerSpriteState.IdleLeft:
                     renderer.sprite = MoveRight[0];
                     renderer.flipX = true;
                     break;
 
 
-                case SpriteState.Right:
+                case PlayerSpriteState.Right:
                     if (animationCount >= _rightLength)
                         animationCount = 0;
                     renderer.sprite = MoveRight[animationCount];
                     renderer.flipX = false;
                     break;
-                case SpriteState.Left:
+                case PlayerSpriteState.Left:
                     if (animationCount >= _rightLength)
                         animationCount = 0;
                     renderer.sprite = MoveRight[animationCount];

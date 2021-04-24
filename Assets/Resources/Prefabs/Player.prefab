@@ -96,7 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa43b6d842159e4a97a9ced3dae3ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 300
+  ProjTexture: {fileID: 0}
+  WorldController: {fileID: 0}
+  Attacking: 0
+  Speed: 150
+  Cooldown: 1
+  CurrentLevel: 0
+  DMG: 10
+  LastDir: 0
 --- !u!114 &7678092253608674348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,16 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9182ca2b1673c44b9925c158eaa5893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   MoveRight:
   - {fileID: -9183067349150305011, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
   - {fileID: -7460842879880474074, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
   - {fileID: -1465040328651535236, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  MoveUp:
-  - {fileID: 4374192986536666621, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  - {fileID: -9003097987304540805, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  - {fileID: -8417146401548212257, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  MoveDown:
-  - {fileID: 2239359117277031806, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  - {fileID: 4322028812565074450, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  - {fileID: -4883825329871249813, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
   AnimationSpeed: 0.25

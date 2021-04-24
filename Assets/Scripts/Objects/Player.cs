@@ -18,8 +18,9 @@ namespace game.Objects
         public float Cooldown = 1f; // Seconds
         public int CurrentLevel = 0;
         public int DMG = 100;
+        private bool stuck = false;
 
-        public SpriteState LastDir;
+        public PlayerSpriteState LastDir;
         public virtual ProjectileParameters ProjectileParameters { get; protected set; }
 
         private void Start()
@@ -96,8 +97,8 @@ namespace game.Objects
 
             if (horizontalAbs > verticalAbs)
             {
-                animator.UpdateSprite(horizontal > 0 ? SpriteState.Right : SpriteState.Left);
-                LastDir = horizontal > 0 ? SpriteState.Right : SpriteState.Left;
+                animator.UpdateSprite(horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left);
+                LastDir = horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left;
             }
 
             rb.velocity = new Vector2(horizontal * Speed * Time.fixedDeltaTime, vertical * Speed * Time.fixedDeltaTime);
@@ -105,11 +106,12 @@ namespace game.Objects
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("Trigger enter!");
             if (collision.tag == "Enemy" && Attacking)
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
-                enemy.TakeDamage(DMG);
-            }
+                
+            }           
         }
     }
 }

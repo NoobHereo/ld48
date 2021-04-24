@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3431472135068057703}
   - component: {fileID: 8821761240475431154}
-  - component: {fileID: 7417222238159342537}
   - component: {fileID: 1996288534488924815}
+  - component: {fileID: -374311763759244265}
+  - component: {fileID: 7417222238159342537}
   - component: {fileID: 5184138144956343136}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Chicken
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 803323813
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8330994224451563945, guid: d530d5931fd43f44391a59ca9043b00c,
-    type: 3}
+  m_Sprite: {fileID: 281052976197187531, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,6 +85,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1996288534488924815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7445400573916004405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded7b2e0d8c77ed4fbd84556a40993d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3
+  Health: 25
+  PredictiveMovement: 0
+--- !u!114 &-374311763759244265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7445400573916004405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d53f9437f7ea841867221d440e5429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveAnim:
+  - {fileID: 281052976197187531, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
+  - {fileID: -8954598917651144346, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
+  AnimationSpeed: 0.15
 --- !u!61 &7417222238159342537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -111,20 +142,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &1996288534488924815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7445400573916004405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded7b2e0d8c77ed4fbd84556a40993d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 8
-  Health: 100
 --- !u!50 &5184138144956343136
 Rigidbody2D:
   serializedVersion: 4
