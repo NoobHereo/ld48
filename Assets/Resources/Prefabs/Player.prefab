@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7678092253608674348}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,9 +69,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 803323813
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -9183067349150305011, guid: d530d5931fd43f44391a59ca9043b00c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,12 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa43b6d842159e4a97a9ced3dae3ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjTexture: {fileID: 0}
+  ProjTexture: {fileID: 2823388173963058815, guid: d530d5931fd43f44391a59ca9043b00c,
+    type: 3}
   WorldController: {fileID: 0}
+  HurtOverlay: {fileID: 0}
   Attacking: 0
-  Speed: 150
   Cooldown: 1
   CurrentLevel: 0
+  HP: 150
+  Speed: 200
   DMG: 10
   LastDir: 0
 --- !u!114 &7678092253608674348
@@ -121,4 +124,4 @@ MonoBehaviour:
   - {fileID: -9183067349150305011, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
   - {fileID: -7460842879880474074, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
   - {fileID: -1465040328651535236, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  AnimationSpeed: 0.25
+  AnimationSpeed: 0.15

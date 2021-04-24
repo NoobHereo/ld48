@@ -1,29 +1,38 @@
-﻿using System.Collections;
+﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace game.Objects
 {
     public class Player : MonoBehaviour
     {
+
+        //============= COMPONENTS =============//
         private Rigidbody2D rb;
         private Camera cam;
         private PlayerAnimator animator;
-        private BoxCollider2D collider;
-        public Sprite ProjTexture;
-        public WorldController WorldController;
-        public GameObject HurtOverlay;
+        private BoxCollider2D _collider;
+        public virtual ProjectileParameters ProjectileParameters { get; protected set; }
 
+        //============= PROPERTIES =============//
+        public WorldController WorldController;
+        public Sprite ProjTexture;
+        public PlayerSpriteState LastDir;
         public bool Attacking = false;
         private float lastShoot;
         public float Cooldown = 1f; // Seconds
         public int CurrentLevel = 0;
+        public bool OnTrapDoor = false;
 
+        //============= UI =============//
+        public GameObject HurtOverlay;
+        public TextMeshProUGUI TrapDoorText;
+        public TrapDoor LastTrapDoor;
+
+        //============= STATS =============//
         public int HP = 100;
         public float Speed = 100f;
         public int DMG = 100;
-
-        public PlayerSpriteState LastDir;
-        public virtual ProjectileParameters ProjectileParameters { get; protected set; }
 
         private void Start()
         {
@@ -37,15 +46,15 @@ namespace game.Objects
 
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<PlayerAnimator>();
-            collider = GetComponent<BoxCollider2D>();
+            _collider = GetComponent<BoxCollider2D>();
 
             animator.player = this;
             rb.gravityScale = 0;
             rb.freezeRotation = true;
             cam = UnityEngine.Camera.main.GetComponent<Camera>();
             cam.SetTarget(transform);
-            collider.size = new Vector2(0.5f, 0.5f);
-            collider.isTrigger = false;
+            _collider.size = new Vector2(0.5f, 0.5f);
+            _collider.isTrigger = false;
             loadWOrld(CurrentLevel);
         }
 
@@ -64,7 +73,14 @@ namespace game.Objects
             var verticalAbs = Mathf.Abs(vertical);
 
             if (HP <= 0)
-                Debug.Log("We're dead");
+                OnDeath();
+
+            if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor)
+            {
+                TrapDoorText.gameObject.SetActive(false);
+                LastTrapDoor.Lock();
+                loadWOrld(CurrentLevel + 1);
+            }
 
             if (Input.GetAxisRaw("Fire1") > 0.1f)
             {
@@ -134,6 +150,18 @@ namespace game.Objects
             HurtOverlay.SetActive(true);
             if (!dying)
                 HurtOverlay.GetComponent<Animation>().Play();
+        }
+
+        public void DispatchTrapdoorUI(bool visible, TrapDoor trapdoor)
+        {
+            LastTrapDoor = trapdoor;
+            TrapDoorText.text = "PRESS [E] TO ENTER";
+            TrapDoorText.gameObject.SetActive(visible);
+        }
+
+        public void OnDeath()
+        {
+            SceneManager.LoadScene(2);
         }
     }
 }

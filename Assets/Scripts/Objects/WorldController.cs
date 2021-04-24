@@ -94,15 +94,16 @@ namespace game.Objects
             float minSpawnT = 1f / difficulty;
             float maxSpawnT = 10f / difficulty;
 
+            entity.GetComponent<Enemy>().WorldController = this;
             float randomTime = Random.Range(minSpawnT, maxSpawnT);
             yield return new WaitForSeconds(randomTime);
-            Instantiate(entity, position, rotation);
-            entity.GetComponent<Enemy>().WorldController = this;
+            Instantiate(entity, position, rotation);           
         }
 
         public void OnWorldEntityDeath()
         {
             remainingEnts--;
+            Debug.Log("One enemy down, " + remainingEnts + " to go!");
         }
 
         private void Update()

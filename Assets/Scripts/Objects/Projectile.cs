@@ -82,9 +82,11 @@ namespace game.Objects
             if (collision.tag == "Enemy")
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
-                enemy.TakeDamage(Parameters.Damage);
-                enemy.GetComponent<Rigidbody2D>().AddForce(enemy.transform.position);
-                Destroy(gameObject);
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(Parameters.Damage);
+                    Destroy(gameObject);
+                }
             }
         }
     }

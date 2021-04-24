@@ -65,7 +65,7 @@ namespace game.Objects
 
         public void Die()
         {
-            WorldController.OnWorldEntityDeath();
+            WorldController.OnWorldEntityDeath();           
             Destroy(gameObject);
         }
 
