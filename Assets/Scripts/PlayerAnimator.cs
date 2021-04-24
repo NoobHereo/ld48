@@ -4,7 +4,10 @@ namespace game
 {
     public enum SpriteState
     {
-        Idle,
+        IdleRight,
+        IdleLeft,
+        IdleUp,
+        IdleDown,
         Right,
         Left,
         Up,
@@ -50,6 +53,7 @@ namespace game
 
         public void UpdateSprite(SpriteState spriteState)
         {
+            // Debug.Log("Setting sprite state: " + spriteState);
             if (spriteState == state)
                 return;
             animationCount = 0;
@@ -61,7 +65,19 @@ namespace game
         {
             switch(state)
             {
-                case SpriteState.Idle:
+                case SpriteState.IdleRight:
+                    renderer.sprite = MoveRight[0];
+                    renderer.flipX = false;
+                    break;
+                case SpriteState.IdleLeft:
+                    renderer.sprite = MoveRight[0];
+                    renderer.flipX = true;
+                    break;
+                case SpriteState.IdleUp:
+                    renderer.sprite = MoveUp[0];
+                    renderer.flipX = false;
+                    break;
+                case SpriteState.IdleDown:
                     renderer.sprite = MoveDown[0];
                     renderer.flipX = false;
                     break;

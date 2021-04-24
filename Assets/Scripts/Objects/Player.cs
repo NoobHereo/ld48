@@ -8,6 +8,7 @@ namespace game.Objects
         private game.Objects.Camera cam;
         public float Speed = 100f;
         private PlayerAnimator animator;
+        private BoxCollider2D collider;
 
         private void Start()
         {
@@ -16,12 +17,18 @@ namespace game.Objects
 
         private void configComponenets()
         {
+            gameObject.AddComponent<BoxCollider2D>();
             gameObject.AddComponent<Rigidbody2D>();
+
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<PlayerAnimator>();
+            collider = GetComponent<BoxCollider2D>();
+
             rb.gravityScale = 0;
             cam = UnityEngine.Camera.main.GetComponent<Camera>();
             cam.SetTarget(transform);
+            collider.size = new Vector2(0.5f, 0.5f);
+            collider.isTrigger = false;
         }
 
         private void Update()
@@ -34,7 +41,6 @@ namespace game.Objects
             if (horizontalAbs < 0.1f && verticalAbs < 0.1f)
             {
                 rb.velocity = Vector2.zero;
-                animator.UpdateSprite(SpriteState.Idle);
             }
 
             if (horizontalAbs > verticalAbs)
@@ -43,6 +49,7 @@ namespace game.Objects
             }
             else
             {
+                Debug.Log(vertical);
                 animator.UpdateSprite(vertical > 0 ? SpriteState.Up : SpriteState.Down);
             }
 
