@@ -7,6 +7,7 @@ namespace game.Objects
         private Transform target;
         private EnemyAnimator animator;
         public WorldController WorldController;
+        private Rigidbody2D rb;
 
         public float Speed = 150f;
         public int Health = 100;
@@ -17,6 +18,8 @@ namespace game.Objects
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
             animator = GetComponent<EnemyAnimator>();
+            rb = GetComponent<Rigidbody2D>();
+            rb.freezeRotation = true;
         }
 
         private void Update()
@@ -54,18 +57,19 @@ namespace game.Objects
                 Die();
         }
 
-        public void OnTriggerEnter2D(Collider2D collision)
+        public void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.tag == "Player")
+            if (collision.gameObject.tag == "Player")
             {
-                Player player = collision.GetComponent<Player>();
+                Player player = collision.gameObject.GetComponent<Player>();                
                 player.TakeDamage(DMG);
             }
         }
 
         public void Die()
         {
-            WorldController.OnWorldEntityDeath();           
+            WorldController.OnWorldEntityDeath();
+            StatDataManager.Singleton.EnemyDeathEvent();
             Destroy(gameObject);
         }
 
