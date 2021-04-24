@@ -5,7 +5,6 @@ namespace game.Objects
 {
     public class WorldController : MonoBehaviour
     {
-        public Transform[] SpawnLocations;
         public SuperMap[] Levels;
         public GameObject EnemyPrefab;
         public GameObject CurrentMap;
@@ -16,7 +15,7 @@ namespace game.Objects
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                LoadMap(currentWorldId + 1);
+                StartWave();
         }
 
         public void LoadMap(int mapId)
@@ -34,8 +33,9 @@ namespace game.Objects
         {
             for (int i = 0; i < EnemyCount; i++)
             {
-                int loc = Random.Range(0, SpawnLocations.Length);
-                Instantiate(EnemyPrefab, SpawnLocations[loc]);
+                float x = Random.Range(6.25f, 24f);
+                float y = Random.Range(-6.25f, -23f);              
+                Instantiate(EnemyPrefab, new Vector3(x, y, 0), Quaternion.identity);
             }
         }
 

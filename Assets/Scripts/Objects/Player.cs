@@ -109,9 +109,6 @@ namespace game.Objects
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
                 enemy.TakeDamage(DMG);
-                var rb = enemy.GetComponent<Rigidbody2D>();
-                Vector2 forceVec = new Vector2(5f, 5f);
-                rb.AddForce(forceVec);
             }
         }
     }

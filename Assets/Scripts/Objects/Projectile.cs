@@ -83,6 +83,9 @@ namespace game.Objects
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
                 enemy.TakeDamage(Parameters.Damage);
+                var rb = enemy.GetComponent<Rigidbody2D>();
+                Vector2 forceVec = new Vector2(1f, 1f);
+                rb.AddForce(forceVec);
                 Destroy(gameObject);
             }
         }
