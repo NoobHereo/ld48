@@ -6,6 +6,7 @@ namespace game.Objects
     {
         private Transform target;
         private EnemyAnimator animator;
+        public WorldController WorldController;
 
         public float Speed = 150f;
         public int Health = 100;
@@ -21,7 +22,7 @@ namespace game.Objects
         private void Update()
         {
             if (Health <= 0)
-                Destroy(gameObject);
+                Die();
 
             var tRB = target.gameObject.GetComponent<Rigidbody2D>();
 
@@ -49,6 +50,8 @@ namespace game.Objects
         public void TakeDamage(int damage)
         {
             Health -= damage;
+            if (Health <= 0)
+                Die();
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -58,6 +61,12 @@ namespace game.Objects
                 Player player = collision.GetComponent<Player>();
                 player.TakeDamage(DMG);
             }
+        }
+
+        public void Die()
+        {
+            WorldController.OnWorldEntityDeath();
+            Destroy(gameObject);
         }
 
     }

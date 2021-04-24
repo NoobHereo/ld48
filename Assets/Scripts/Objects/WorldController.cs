@@ -7,6 +7,8 @@ namespace game.Objects
     public class WorldController : MonoBehaviour
     {
         public SuperMap[] Levels;
+        public GameObject[] Trapdoors;
+
         public GameObject[] EasyEnemies;
         public GameObject[] DifficultEnemies;
         public GameObject[] HardcoreEnemies;
@@ -15,8 +17,9 @@ namespace game.Objects
         public GameObject CurrentMap;
         private int currentWorldId;
         private int difficulty = 1;
-
         public int EnemyCount = 10;
+        private int remainingEnts;
+        private bool currentArenaDone = false;
 
         private void Start()
         {
@@ -38,6 +41,7 @@ namespace game.Objects
 
         public void StartWave()
         {
+            remainingEnts = EnemyCount;
             for (int i = 0; i < EnemyCount; i++)
             {
                 float x = Random.Range(6.25f, 24f);
@@ -93,6 +97,26 @@ namespace game.Objects
             float randomTime = Random.Range(minSpawnT, maxSpawnT);
             yield return new WaitForSeconds(randomTime);
             Instantiate(entity, position, rotation);
+            entity.GetComponent<Enemy>().WorldController = this;
+        }
+
+        public void OnWorldEntityDeath()
+        {
+            remainingEnts--;
+        }
+
+        private void Update()
+        {
+            if (remainingEnts == 0 && !currentArenaDone)
+            {
+                currentArenaDone = true;
+                UnlockNextLevel();
+            }
+        }
+
+        private void UnlockNextLevel()
+        {
+            Trapdoors[currentWorldId].GetComponent<TrapDoor>().Unlock();
         }
     }
 }
