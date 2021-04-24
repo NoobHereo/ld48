@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace game.Objects
@@ -28,6 +29,7 @@ namespace game.Objects
         public GameObject HurtOverlay;
         public TextMeshProUGUI TrapDoorText;
         public TrapDoor LastTrapDoor;
+        public Slider HPSlider;
 
         //============= STATS =============//
         public int HP = 100;
@@ -55,6 +57,11 @@ namespace game.Objects
             cam.SetTarget(transform);
             _collider.size = new Vector2(0.5f, 0.5f);
             _collider.isTrigger = false;
+
+            HPSlider.minValue = 0;
+            HPSlider.maxValue = HP;
+            HPSlider.value = HP;
+
             loadWOrld(CurrentLevel);
         }
 
@@ -141,6 +148,7 @@ namespace game.Objects
                 Debug.Log("Player ded..");
             
             HP -= dmg;
+            HPSlider.value = HP;
             bool dying = HP <= 50 ? true : false;
             dispatchHurtOverlay(dying);
         }

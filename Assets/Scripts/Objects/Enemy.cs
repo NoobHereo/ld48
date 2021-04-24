@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace game.Objects
 {
@@ -8,6 +9,7 @@ namespace game.Objects
         private EnemyAnimator animator;
         public WorldController WorldController;
         private Rigidbody2D rb;
+        public Slider HPSlider;
 
         public float Speed = 150f;
         public int Health = 100;
@@ -20,6 +22,9 @@ namespace game.Objects
             animator = GetComponent<EnemyAnimator>();
             rb = GetComponent<Rigidbody2D>();
             rb.freezeRotation = true;
+            HPSlider.minValue = 0;
+            HPSlider.maxValue = Health;
+            HPSlider.value = Health;
         }
 
         private void Update()
@@ -53,6 +58,7 @@ namespace game.Objects
         public void TakeDamage(int damage)
         {
             Health -= damage;
+            HPSlider.value = Health;
             if (Health <= 0)
                 Die();
         }

@@ -6,10 +6,7 @@ namespace game.UI
 {
     public class ScreenManager : MonoBehaviour
     {
-        public Button PlayButton;
-        public Button CreditsButton;
-        public Button HelpButton;
-        public Button QuitButton;
+        public Button PlayButton, CreditsButton, HelpButton, QuitButton;
 
         private void Start()
         {
