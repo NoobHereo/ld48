@@ -10,6 +10,7 @@ namespace game.Objects
         public float Speed = 150f;
         public int Health = 100;
         public bool PredictiveMovement = false;
+        public int DMG = 10;
 
         private void Start()
         {
@@ -48,6 +49,15 @@ namespace game.Objects
         public void TakeDamage(int damage)
         {
             Health -= damage;
+        }
+
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Player")
+            {
+                Player player = collision.GetComponent<Player>();
+                player.TakeDamage(DMG);
+            }
         }
 
     }

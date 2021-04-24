@@ -11,14 +11,16 @@ namespace game.Objects
         private BoxCollider2D collider;
         public Sprite ProjTexture;
         public WorldController WorldController;
+        public GameObject HurtOverlay;
 
         public bool Attacking = false;
-        public float Speed = 100f;
         private float lastShoot;
         public float Cooldown = 1f; // Seconds
         public int CurrentLevel = 0;
+
+        public int HP = 100;
+        public float Speed = 100f;
         public int DMG = 100;
-        private bool stuck = false;
 
         public PlayerSpriteState LastDir;
         public virtual ProjectileParameters ProjectileParameters { get; protected set; }
@@ -60,6 +62,9 @@ namespace game.Objects
             var horizontalAbs = Mathf.Abs(horizontal);
             var vertical = Input.GetAxisRaw("Vertical");
             var verticalAbs = Mathf.Abs(vertical);
+
+            if (HP <= 0)
+                Debug.Log("We're dead");
 
             if (Input.GetAxisRaw("Fire1") > 0.1f)
             {
@@ -112,6 +117,23 @@ namespace game.Objects
                 Enemy enemy = collision.GetComponent<Enemy>();
                 
             }           
+        }
+
+        public void TakeDamage(int dmg)
+        {
+            if (HP <= 0)
+                Debug.Log("Player ded..");
+            
+            HP -= dmg;
+            bool dying = HP <= 50 ? true : false;
+            dispatchHurtOverlay(dying);
+        }
+
+        private void dispatchHurtOverlay(bool dying)
+        {
+            HurtOverlay.SetActive(true);
+            if (!dying)
+                HurtOverlay.GetComponent<Animation>().Play();
         }
     }
 }

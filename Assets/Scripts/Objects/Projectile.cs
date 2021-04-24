@@ -83,6 +83,7 @@ namespace game.Objects
             {
                 Enemy enemy = collision.GetComponent<Enemy>();
                 enemy.TakeDamage(Parameters.Damage);
+                enemy.GetComponent<Rigidbody2D>().AddForce(enemy.transform.position);
                 Destroy(gameObject);
             }
         }
