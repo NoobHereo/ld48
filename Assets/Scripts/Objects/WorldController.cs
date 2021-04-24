@@ -7,7 +7,7 @@ namespace game.Objects
     public class WorldController : MonoBehaviour
     {
         public SuperMap[] Levels;
-        public GameObject[] Trapdoors;
+        public GameObject Trapdoor;
 
         public GameObject[] EasyEnemies;
         public GameObject[] DifficultEnemies;
@@ -15,11 +15,11 @@ namespace game.Objects
         public GameObject[] Bossess;
 
         public GameObject CurrentMap;
-        private int currentWorldId;
-        private int difficulty = 1;
+        [SerializeField] private int currentWorldId;
+        [SerializeField] private int difficulty = 1;        
+        [SerializeField] private int remainingEnts;
+        [SerializeField] private bool currentArenaDone = false;
         public int EnemyCount = 10;
-        private int remainingEnts;
-        private bool currentArenaDone = false;
 
         private void Start()
         {
@@ -33,7 +33,8 @@ namespace game.Objects
 
             var mapGO = GameObject.Instantiate(Levels[mapId].gameObject);
             mapGO.transform.localPosition = Vector2.zero;
-            difficulty++;
+            if (currentArenaDone)
+                currentArenaDone = false;            
             EnemyCount += 5;
             CurrentMap = mapGO;
             currentWorldId = mapId;
@@ -74,15 +75,15 @@ namespace game.Objects
             switch (difficulty)
             {
                 case 1:
-                    entity = EasyEnemies[Random.Range(0, EasyEnemies.Length)];
+                    entity = EasyEnemies[Random.Range(0, EasyEnemies.Length)]; // Easy
                     break;
 
                 case 2:
-                    entity = DifficultEnemies[Random.Range(0, DifficultEnemies.Length)];
+                    entity = EasyEnemies[Random.Range(0, EasyEnemies.Length)]; // Difficult
                     break;
 
                 case 3:
-                    entity = HardcoreEnemies[Random.Range(0, HardcoreEnemies.Length)];
+                    entity = EasyEnemies[Random.Range(0, EasyEnemies.Length)]; // Hardcore
                     break;
             }
 
@@ -91,8 +92,8 @@ namespace game.Objects
 
         private IEnumerator SpawnEntity(GameObject entity, Vector3 position, Quaternion rotation)
         {
-            float minSpawnT = 1f / difficulty;
-            float maxSpawnT = 10f / difficulty;
+            float minSpawnT = 5f / difficulty;
+            float maxSpawnT = 15f / difficulty;
 
             entity.GetComponent<Enemy>().WorldController = this;
             float randomTime = Random.Range(minSpawnT, maxSpawnT);
@@ -111,13 +112,14 @@ namespace game.Objects
             if (remainingEnts == 0 && !currentArenaDone)
             {
                 currentArenaDone = true;
+                difficulty++;
                 UnlockNextLevel();
             }
         }
 
         private void UnlockNextLevel()
         {
-            Trapdoors[currentWorldId].GetComponent<TrapDoor>().Unlock();
+            Trapdoor.GetComponent<TrapDoor>().Unlock();
         }
     }
 }

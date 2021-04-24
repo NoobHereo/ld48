@@ -87,6 +87,7 @@ namespace game.Objects
                 TrapDoorText.gameObject.SetActive(false);
                 LastTrapDoor.Lock();
                 loadWOrld(CurrentLevel + 1);
+                WorldController.StartWave();
             }
 
             if (Input.GetAxisRaw("Fire1") > 0.1f)
