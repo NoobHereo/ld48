@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using game.Objects;
 
 namespace game
 {
@@ -17,6 +18,7 @@ namespace game
     public class PlayerAnimator : MonoBehaviour
     {
         private SpriteRenderer renderer;
+        public Player player;
 
         private SpriteState state = SpriteState.Down;
 
@@ -38,7 +40,7 @@ namespace game
             renderer = GetComponent<SpriteRenderer>();
             _rightLength = MoveRight.Length;
             _upLength = MoveUp.Length;
-            _downLength = MoveDown.Length;            
+            _downLength = MoveDown.Length;
         }
 
         private void Update()
@@ -64,7 +66,8 @@ namespace game
         private void Animate()
         {
             switch(state)
-            {
+            {              
+
                 case SpriteState.IdleRight:
                     renderer.sprite = MoveRight[0];
                     renderer.flipX = false;
@@ -82,33 +85,32 @@ namespace game
                     renderer.flipX = false;
                     break;
 
+
+
                 case SpriteState.Right:
                     if (animationCount >= _rightLength)
                         animationCount = 0;
                     renderer.sprite = MoveRight[animationCount];
                     renderer.flipX = false;
                     break;
-
                 case SpriteState.Left:
                     if (animationCount >= _rightLength)
                         animationCount = 0;
                     renderer.sprite = MoveRight[animationCount];
                     renderer.flipX = true;
                     break;
-
                 case SpriteState.Up:
                     if (animationCount >= _upLength)
                         animationCount = 0;
                     renderer.sprite = MoveUp[animationCount];
                     renderer.flipX = false;
                     break;
-
                 case SpriteState.Down:
                     if (animationCount >= _downLength)
                         animationCount = 0;
                     renderer.sprite = MoveDown[animationCount];
                     renderer.flipX = false;
-                    break;
+                    break;              
             }
         }
 
