@@ -52,6 +52,8 @@ namespace game.Objects
         public bool Teleporting = false;
         private bool deathTrigger = false;
         private bool customizationOpen = false;
+        private float abilityCharge = 10;
+        public ProjectileCfg CurrentProj;
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -65,12 +67,14 @@ namespace game.Objects
         public TextMeshProUGUI DMGText;
         public TextMeshProUGUI DPSText;
 
+        public Slider AbilityRechargeBar;
+
         //============= STATS =============//
         public int HP = 100;
         public int MaxHP = 100;
         public float Speed = 100f;
-        public int DMG = 10;
-        public float DPS = 1f; // Seconds
+        public int DMG;
+        public float DPS; // Seconds
 
         private void Start()
         {            
@@ -104,6 +108,13 @@ namespace game.Objects
             DMGText.text = DMG.ToString();
             SPDText.text = Speed.ToString();
 
+            AbilityRechargeBar.minValue = 0;
+            AbilityRechargeBar.maxValue = 10;
+            AbilityRechargeBar.value = 10;
+
+            DPS = CurrentProj.DPS;
+            DMG = CurrentProj.DMG;
+
             loadWOrld(CurrentLevel);
         }
 
@@ -121,6 +132,12 @@ namespace game.Objects
             var horizontalAbs = Mathf.Abs(horizontal);
             var vertical = Input.GetAxisRaw("Vertical");
             var verticalAbs = Mathf.Abs(vertical);
+
+            if (abilityCharge < 10)
+            {
+                abilityCharge += Time.deltaTime;
+                AbilityRechargeBar.value = abilityCharge;
+            }
 
             if (HP <= 0 && !deathTrigger)
             {
@@ -161,9 +178,11 @@ namespace game.Objects
                     IncreaseStat(PlayerStats.BOMB, -1);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) && abilityCharge >= 10f)
                 {
                     Teleporting = true;
+                    abilityCharge = 0;
+                    AbilityRechargeBar.value = abilityCharge;
                     var teleAimGO = Instantiate(TeleAimPrefab);
                     teleAimGO.transform.position = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     teleAimGO.GetComponent<Teleport>().player = this;
@@ -307,7 +326,7 @@ namespace game.Objects
                     break;
 
                 case PlayerStats.DPS:
-                    IncreaseStat(PlayerStats.DPS, 0.005f);
+                    IncreaseStat(PlayerStats.DPS, 0.002f);
                     break;
 
                 case PlayerStats.SPD:

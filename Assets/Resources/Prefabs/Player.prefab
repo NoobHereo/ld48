@@ -101,6 +101,7 @@ MonoBehaviour:
   TeleAimPrefab: {fileID: 6420288306686279038, guid: c3edec86044fff64eb6a096dc2693a0c,
     type: 3}
   SoundManager: {fileID: 0}
+  CustomizationWindow: {fileID: 0}
   PlayerHitSFX: {fileID: 8300000, guid: e4fbb8047e906b54695f6802a5d7ee9f, type: 3}
   PlayerDeathSFX: {fileID: 8300000, guid: a6bafd3b086470e4f914031291111747, type: 3}
   PauseSFX: {fileID: 8300000, guid: a55370fed5da69d438455339ca48d142, type: 3}
@@ -116,6 +117,7 @@ MonoBehaviour:
   IsAdmin: 1
   IsDead: 0
   Teleporting: 0
+  CurrentProj: {fileID: 11400000, guid: 3273066df134748438a6ab01da874a91, type: 2}
   HurtOverlay: {fileID: 0}
   TrapDoorText: {fileID: 0}
   LastTrapDoor: {fileID: 0}
@@ -125,6 +127,7 @@ MonoBehaviour:
   SPDText: {fileID: 0}
   DMGText: {fileID: 0}
   DPSText: {fileID: 0}
+  AbilityRechargeBar: {fileID: 0}
   HP: 100
   MaxHP: 100
   Speed: 200
