@@ -96,7 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa43b6d842159e4a97a9ced3dae3ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BombPrefab: {fileID: 0}
+  BombPrefab: {fileID: 5599268115109377640, guid: e7d17735830d5e846a22b1224cbed68f,
+    type: 3}
+  TeleAimPrefab: {fileID: 6420288306686279038, guid: c3edec86044fff64eb6a096dc2693a0c,
+    type: 3}
   WorldController: {fileID: 0}
   ProjTexture: {fileID: -177568191593360070, guid: 53c63a678f59df44caa0f421b65f7408,
     type: 3}
@@ -105,13 +108,18 @@ MonoBehaviour:
   CurrentLevel: 0
   OnTrapDoor: 0
   Bombs: 1
-  IsAdmin: 0
+  IsAdmin: 1
+  IsDead: 0
+  Teleporting: 0
   HurtOverlay: {fileID: 0}
   TrapDoorText: {fileID: 0}
   LastTrapDoor: {fileID: 0}
   HPSlider: {fileID: 0}
   PauseText: {fileID: 0}
   BombCountText: {fileID: 0}
+  SPDText: {fileID: 0}
+  DMGText: {fileID: 0}
+  DPSText: {fileID: 0}
   HP: 100
   MaxHP: 100
   Speed: 200
@@ -134,4 +142,5 @@ MonoBehaviour:
   - {fileID: 7283762153814389850, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
   - {fileID: 2834217782784033329, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
   - {fileID: 7283762153814389850, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  DeathAnim: []
   AnimationSpeed: 0.15

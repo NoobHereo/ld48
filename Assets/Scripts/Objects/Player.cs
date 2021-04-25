@@ -27,6 +27,7 @@ namespace game.Objects
         private BoxCollider2D _collider;
         public virtual ProjectileParameters ProjectileParameters { get; protected set; }
         public GameObject BombPrefab;
+        public GameObject TeleAimPrefab;
 
         //============= PROPERTIES =============//
         public WorldController WorldController;
@@ -40,6 +41,7 @@ namespace game.Objects
         public int Bombs = 1;
         public bool IsAdmin;
         public bool IsDead = false; // pepsi
+        public bool Teleporting = false;
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -102,6 +104,7 @@ namespace game.Objects
 
         private void loadWOrld(int id)
         {
+            OnTrapDoor = false;
             transform.position = new Vector2(15f, -15f);
             WorldController.LoadMap(id);
             CurrentLevel = id;
@@ -138,10 +141,18 @@ namespace game.Objects
                     IncreaseStat(PlayerStats.BOMB, -1);
                 }
 
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Teleporting = true;
+                    var teleAimGO = Instantiate(TeleAimPrefab);
+                    teleAimGO.transform.position = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    teleAimGO.GetComponent<Teleport>().player = this;
+                }
+
                 if (Input.GetKeyDown(KeyCode.P))
                     PauseGame();
 
-                if (Input.GetAxisRaw("Fire1") > 0.1f && !gamePaused)
+                if (Input.GetAxisRaw("Fire1") > 0.1f && !gamePaused && !Teleporting)
                 {
                     Vector2 dir = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                     float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -216,7 +227,6 @@ namespace game.Objects
 
         private void dispatchHurtOverlay(bool dying)
         {
-            HurtOverlay.GetComponent<Animation>().Stop();
             HurtOverlay.SetActive(true);
             if (!dying)
                 HurtOverlay.GetComponent<Animation>().Play();
