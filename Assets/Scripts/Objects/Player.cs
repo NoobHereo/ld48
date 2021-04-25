@@ -54,6 +54,8 @@ namespace game.Objects
         private bool customizationOpen = false;
         private float abilityCharge = 10;
         public ProjectileCfg CurrentProj;
+        public bool HasWon = false;
+        private bool winTrigger = false;
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -71,7 +73,7 @@ namespace game.Objects
 
         //============= STATS =============//
         public int HP = 100;
-        public int MaxHP = 100;
+        public int MaxHP = 999999;
         public float Speed = 100f;
         public int DMG;
         public float DPS; // Seconds
@@ -139,7 +141,14 @@ namespace game.Objects
                 AbilityRechargeBar.value = abilityCharge;
             }
 
-            if (HP <= 0 && !deathTrigger)
+            if (HasWon && !winTrigger)
+            {
+                winTrigger = true;
+                rb.velocity = Vector2.zero;
+                animator.UpdateSprite(PlayerSpriteState.Win);
+                OnWin();
+            }
+            if (HP <= 0 && !deathTrigger && !HasWon)
             {
                 deathTrigger = true;
                 IsDead = true;
@@ -147,7 +156,7 @@ namespace game.Objects
                 animator.UpdateSprite(PlayerSpriteState.Death);
                 OnDeath();
             }
-            else if (!deathTrigger && !IsDead)
+            else if (!deathTrigger && !IsDead && !HasWon)
             {
                 if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor && !gamePaused)
                 {
@@ -381,6 +390,17 @@ namespace game.Objects
             }
 
             StatDataManager.Singleton.ItemPicked();
+        }
+
+        public void OnWin()
+        {           
+            StartCoroutine(LoadWinScreen());
+        }
+
+        private IEnumerator LoadWinScreen()
+        {
+            yield return new WaitForSeconds(3f);
+            SceneManager.LoadScene(3);
         }
     }
 }

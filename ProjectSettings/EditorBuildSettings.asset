@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Release/DeathView.unity
     guid: 4d58f9bf2e3a70746bb641558824c013
+  - enabled: 1
+    path: Assets/Scenes/Release/WinView.unity
+    guid: 27e32cb99c2ea79479b66cdf9c43a457
   m_configObjects: {}

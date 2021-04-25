@@ -9,7 +9,8 @@ namespace game
         IdleLeft,    
         Right,
         Left,
-        Death
+        Death,
+        Win
     }
 
     public class PlayerAnimator : MonoBehaviour
@@ -21,9 +22,11 @@ namespace game
 
         public Sprite[] MoveRight;
         public Sprite[] DeathAnim;
+        public Sprite[] WinAnim;
 
         private int _rightLength;
         private int _deathLength;
+        private int _winLength;
 
         private int animationCount;
         private float timer = 0;
@@ -35,6 +38,7 @@ namespace game
             renderer = GetComponent<SpriteRenderer>();
             _rightLength = MoveRight.Length;
             _deathLength = DeathAnim.Length;
+            _winLength = WinAnim.Length;
         }
 
         private void Update()
@@ -61,6 +65,14 @@ namespace game
         {
             switch(state)
             {
+
+                case PlayerSpriteState.Win:
+                    if (animationCount >= _winLength)
+                        animationCount = 0;
+
+                    renderer.sprite = WinAnim[animationCount];
+                    renderer.flipX = false;
+                    break;
 
                 case PlayerSpriteState.Death:
                     bool animDone = false;

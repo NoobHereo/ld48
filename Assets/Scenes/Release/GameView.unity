@@ -1073,10 +1073,20 @@ MonoBehaviour:
   - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
   - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
   - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
-  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
-  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
-  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
-  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
+  - {fileID: 6003967043797623093, guid: 1eb6b6a726cb50443a8b3abbc53fdec6, type: 3}
+  - {fileID: 6003967043797623093, guid: 1eb6b6a726cb50443a8b3abbc53fdec6, type: 3}
+  - {fileID: 6003967043797623093, guid: 1eb6b6a726cb50443a8b3abbc53fdec6, type: 3}
+  - {fileID: 6003967043797623093, guid: 1eb6b6a726cb50443a8b3abbc53fdec6, type: 3}
+  - {fileID: 6003967043797623093, guid: 1eb6b6a726cb50443a8b3abbc53fdec6, type: 3}
+  - {fileID: -1454946647501323233, guid: d6552f40ab2b0354e925a341c87dc9ab, type: 3}
+  - {fileID: -1454946647501323233, guid: d6552f40ab2b0354e925a341c87dc9ab, type: 3}
+  - {fileID: -1454946647501323233, guid: d6552f40ab2b0354e925a341c87dc9ab, type: 3}
+  - {fileID: -1454946647501323233, guid: d6552f40ab2b0354e925a341c87dc9ab, type: 3}
+  - {fileID: -1454946647501323233, guid: d6552f40ab2b0354e925a341c87dc9ab, type: 3}
+  - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
+  - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
+  - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
+  - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
   Trapdoor: {fileID: 1274330774}
   EasyEnemies:
   - {fileID: 7445400573916004405, guid: f8ccf8c2ce2ea4246bfc8f4f223ce0cb, type: 3}
@@ -1093,7 +1103,18 @@ MonoBehaviour:
   - {fileID: 7445400573916004405, guid: 56139a328f35e9c43b8425f59ca1cf6c, type: 3}
   - {fileID: 7445400573916004405, guid: f4580e2aeddeaba4ca99cbcb35b66218, type: 3}
   - {fileID: 7445400573916004405, guid: f1d08a1e423366b48807e0c225644d4b, type: 3}
-  Bossess: []
+  Bossess:
+  - {fileID: 7445400573916004405, guid: aa0ae8e72bbf97f488923a04cc2d9af8, type: 3}
+  - {fileID: 7445400573916004405, guid: f4580e2aeddeaba4ca99cbcb35b66218, type: 3}
+  - {fileID: 7445400573916004405, guid: 2e1e64dc83eaa7e4d81ff18f512324ee, type: 3}
+  - {fileID: 7445400573916004405, guid: 3ce0f4a53e708d64f812f226aca170e4, type: 3}
+  - {fileID: 7445400573916004405, guid: 12e52a34eb722e841893bf94a4b9ac0d, type: 3}
+  - {fileID: 7445400573916004405, guid: 0f4d06a03dee3294488210fb3cce16c6, type: 3}
+  - {fileID: 7445400573916004405, guid: f1d08a1e423366b48807e0c225644d4b, type: 3}
+  - {fileID: 7445400573916004405, guid: 56139a328f35e9c43b8425f59ca1cf6c, type: 3}
+  - {fileID: 7445400573916004405, guid: dd56ab9aee22ac04699f127de2e60695, type: 3}
+  - {fileID: 7445400573916004405, guid: 8bab0def746b19f429e271a1beb19da1, type: 3}
+  - {fileID: 7445400573916004405, guid: f8ccf8c2ce2ea4246bfc8f4f223ce0cb, type: 3}
   CurrentMap: {fileID: 0}
   currentWorldId: 0
   difficulty: 1

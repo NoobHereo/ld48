@@ -16,6 +16,8 @@ namespace game.Items
 
             if (Item != null)
                 renderer.sprite = Item.Texture;
+
+            Destroy(gameObject, 10f);
         }
 
         public void Remove()

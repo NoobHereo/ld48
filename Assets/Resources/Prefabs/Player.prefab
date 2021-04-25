@@ -118,6 +118,7 @@ MonoBehaviour:
   IsDead: 0
   Teleporting: 0
   CurrentProj: {fileID: 11400000, guid: 3273066df134748438a6ab01da874a91, type: 2}
+  HasWon: 0
   HurtOverlay: {fileID: 0}
   TrapDoorText: {fileID: 0}
   LastTrapDoor: {fileID: 0}
@@ -151,4 +152,10 @@ MonoBehaviour:
   - {fileID: 2834217782784033329, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
   - {fileID: 7283762153814389850, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
   DeathAnim: []
+  WinAnim:
+  - {fileID: 6413580423127725322, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: -3589215609869557117, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: 6413580423127725322, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: -3589215609869557117, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: 6413580423127725322, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
   AnimationSpeed: 0.15

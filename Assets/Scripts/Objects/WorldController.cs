@@ -91,8 +91,19 @@ namespace game.Objects
                     entity = DifficultEnemies[Random.Range(0, DifficultEnemies.Length)]; // Difficult
                     break;
 
-                default:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
                     entity = HardcoreEnemies[Random.Range(0, HardcoreEnemies.Length)];
+                    break;
+
+                default:
+                    entity = Bossess[Random.Range(0, Bossess.Length)];
                     break;
 
             }
