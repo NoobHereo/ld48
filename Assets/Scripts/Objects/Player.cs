@@ -29,10 +29,13 @@ namespace game.Objects
         public GameObject BombPrefab;
         public GameObject TeleAimPrefab;
         public SoundManager SoundManager;
+        public GameObject CustomizationWindow;
 
         //============= AUDIO =============//
         public AudioClip PlayerHitSFX;
         public AudioClip PlayerDeathSFX;
+        public AudioClip PauseSFX;
+        public AudioClip UnpauseSFX;
 
         //============= PROPERTIES =============//
         public WorldController WorldController;
@@ -48,6 +51,7 @@ namespace game.Objects
         public bool IsDead = false; // pepsi
         public bool Teleporting = false;
         private bool deathTrigger = false;
+        private bool customizationOpen = false;
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -134,6 +138,20 @@ namespace game.Objects
                     LastTrapDoor.Lock();
                     loadWOrld(CurrentLevel + 1);
                     WorldController.StartWave();
+                }
+
+                if (Input.GetKeyDown(KeyCode.C) && !gamePaused)
+                {
+                    if (customizationOpen)
+                    {
+                        customizationOpen = false;
+                        CustomizationWindow.SetActive(customizationOpen);
+                    }
+                    else
+                    {
+                        customizationOpen = true;
+                        CustomizationWindow.SetActive(customizationOpen);
+                    }
                 }
 
                 if (Input.GetKeyDown(KeyCode.Q) && Bombs > 0)
@@ -262,12 +280,16 @@ namespace game.Objects
                 Time.timeScale = 1;
                 PauseText.gameObject.SetActive(false);
                 gamePaused = false;
+                SoundManager.PlaySFX(UnpauseSFX);
+                SoundManager.ResumeMusic();
             }
             else
             {
                 Time.timeScale = 0;
                 PauseText.gameObject.SetActive(true);
                 gamePaused = true;
+                SoundManager.PlaySFX(PauseSFX);
+                SoundManager.PauseMusic();
             }
         }
 

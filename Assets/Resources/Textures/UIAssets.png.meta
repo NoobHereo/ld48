@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: 1758032763868115878
     second: UIAssets_1
+  - first:
+      213: 2024374180351276535
+    second: UIAssets_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,6 +133,27 @@ TextureImporter:
       bones: []
       spriteID: 6a37bd9fb79c56810800000000000000
       internalID: 1758032763868115878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIAssets_2
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 96
+        width: 29
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f57f486795081c10800000000000000
+      internalID: 2024374180351276535
       vertices: []
       indices: 
       edges: []

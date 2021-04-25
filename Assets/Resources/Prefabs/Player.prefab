@@ -103,6 +103,8 @@ MonoBehaviour:
   SoundManager: {fileID: 0}
   PlayerHitSFX: {fileID: 8300000, guid: e4fbb8047e906b54695f6802a5d7ee9f, type: 3}
   PlayerDeathSFX: {fileID: 8300000, guid: a6bafd3b086470e4f914031291111747, type: 3}
+  PauseSFX: {fileID: 8300000, guid: a55370fed5da69d438455339ca48d142, type: 3}
+  UnpauseSFX: {fileID: 8300000, guid: ac34038fe0a5f0046b283b5cf8c9dcd2, type: 3}
   WorldController: {fileID: 0}
   ProjTexture: {fileID: -177568191593360070, guid: 53c63a678f59df44caa0f421b65f7408,
     type: 3}
