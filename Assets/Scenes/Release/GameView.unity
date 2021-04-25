@@ -254,6 +254,10 @@ MonoBehaviour:
   Levels:
   - {fileID: 3000823421256671034, guid: 7ebefee5f03062343a16b4fd519e9018, type: 3}
   - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
+  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
+  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
+  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
+  - {fileID: -355509248637009910, guid: 1a03fd1ca93e70c45849f5aee44c308e, type: 3}
   Trapdoor: {fileID: 1274330774}
   EasyEnemies:
   - {fileID: 7445400573916004405, guid: f8ccf8c2ce2ea4246bfc8f4f223ce0cb, type: 3}
@@ -685,6 +689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: Cooldown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
         type: 3}

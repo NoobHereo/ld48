@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using SuperTiled2Unity;
 using System.Collections;
+using TMPro;
 
 namespace game.Objects
 {
@@ -128,6 +129,6 @@ namespace game.Objects
         private void UnlockNextLevel()
         {
             Trapdoor.GetComponent<TrapDoor>().Unlock();
-        }
+        }     
     }
 }

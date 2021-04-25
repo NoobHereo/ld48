@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 803323813
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: -9183067349150305011, guid: d530d5931fd43f44391a59ca9043b00c,
+  m_Sprite: {fileID: 7283762153814389850, guid: 53c63a678f59df44caa0f421b65f7408,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorldController: {fileID: 0}
-  ProjTexture: {fileID: -8330994224451563945, guid: d530d5931fd43f44391a59ca9043b00c,
+  ProjTexture: {fileID: -177568191593360070, guid: 53c63a678f59df44caa0f421b65f7408,
     type: 3}
   LastDir: 0
   Attacking: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   MoveRight:
-  - {fileID: -9183067349150305011, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  - {fileID: -7460842879880474074, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
-  - {fileID: -1465040328651535236, guid: d530d5931fd43f44391a59ca9043b00c, type: 3}
+  - {fileID: 7283762153814389850, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: 2834217782784033329, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: 7283762153814389850, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
   AnimationSpeed: 0.15

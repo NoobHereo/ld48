@@ -24,12 +24,14 @@ namespace game.Objects
         public float Cooldown = 1f; // Seconds
         public int CurrentLevel = 0;
         public bool OnTrapDoor = false;
+        private bool gamePaused = false;
 
         //============= UI =============//
         public GameObject HurtOverlay;
         public TextMeshProUGUI TrapDoorText;
         public TrapDoor LastTrapDoor;
         public Slider HPSlider;
+        public TextMeshProUGUI PauseText;
 
         //============= STATS =============//
         public int HP = 100;
@@ -82,7 +84,7 @@ namespace game.Objects
             if (HP <= 0)
                 OnDeath();
 
-            if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor)
+            if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor && !gamePaused)
             {
                 TrapDoorText.gameObject.SetActive(false);
                 LastTrapDoor.Lock();
@@ -90,7 +92,10 @@ namespace game.Objects
                 WorldController.StartWave();
             }
 
-            if (Input.GetAxisRaw("Fire1") > 0.1f)
+            if (Input.GetKeyDown(KeyCode.P))
+                PauseGame();
+
+            if (Input.GetAxisRaw("Fire1") > 0.1f && !gamePaused)
             {
                 Vector2 dir = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -118,13 +123,13 @@ namespace game.Objects
                 }
             }
 
-            if (horizontalAbs < 0.1f && verticalAbs < 0.1f)
+            if (horizontalAbs < 0.1f && verticalAbs < 0.1f && !gamePaused)
             {
                 rb.velocity = Vector2.zero;
                 animator.UpdateSprite(LastDir);
             }
 
-            if (horizontalAbs > verticalAbs)
+            if (horizontalAbs > verticalAbs && !gamePaused)
             {
                 animator.UpdateSprite(horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left);
                 LastDir = horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left;
@@ -171,6 +176,22 @@ namespace game.Objects
         public void OnDeath()
         {
             SceneManager.LoadScene(2);
+        }
+
+        public void PauseGame()
+        {
+            if (gamePaused)
+            {
+                Time.timeScale = 1;
+                PauseText.gameObject.SetActive(false);
+                gamePaused = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                PauseText.gameObject.SetActive(true);
+                gamePaused = true;
+            }
         }
     }
 }
