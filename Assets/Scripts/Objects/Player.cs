@@ -46,7 +46,11 @@ namespace game.Objects
         public TrapDoor LastTrapDoor;
         public Slider HPSlider;
         public TextMeshProUGUI PauseText;
+
         public TextMeshProUGUI BombCountText;
+        public TextMeshProUGUI SPDText;
+        public TextMeshProUGUI DMGText;
+        public TextMeshProUGUI DPSText;
 
         //============= STATS =============//
         public int HP = 100;
@@ -88,6 +92,9 @@ namespace game.Objects
             HPSlider.value = HP;
 
             BombCountText.text = Bombs.ToString();
+            DPSText.text = DPS.ToString();
+            DMGText.text = DMG.ToString();
+            SPDText.text = Speed.ToString();
 
             loadWOrld(CurrentLevel);
         }
@@ -108,6 +115,9 @@ namespace game.Objects
 
             if (HP <= 0)
                 OnDeath();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
 
             if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor && !gamePaused)
             {
@@ -275,14 +285,17 @@ namespace game.Objects
 
                 case PlayerStats.DMG:
                     DMG += (int)gain;
+                    DMGText.text = DMG.ToString();
                     break;
 
                 case PlayerStats.DPS:
                     DPS -= gain;
+                    DPSText.text = DPS.ToString();
                     break;
 
                 case PlayerStats.SPD:
                     Speed += gain;
+                    SPDText.text = Speed.ToString();
                     break;
 
                 case PlayerStats.BOMB:
