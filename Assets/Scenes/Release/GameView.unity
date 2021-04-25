@@ -1376,6 +1376,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7678092253608674348, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: DeathAnim.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678092253608674348, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: DeathAnim.Array.data[0]
+      value: 
+      objectReference: {fileID: -3589215609869557117, guid: 53c63a678f59df44caa0f421b65f7408,
+        type: 3}
+    - target: {fileID: 7678092253608674348, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: DeathAnim.Array.data[1]
+      value: 
+      objectReference: {fileID: -2643395593711298502, guid: 53c63a678f59df44caa0f421b65f7408,
+        type: 3}
+    - target: {fileID: 7678092253608674348, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: DeathAnim.Array.data[2]
+      value: 
+      objectReference: {fileID: -2643395593711298502, guid: 53c63a678f59df44caa0f421b65f7408,
+        type: 3}
+    - target: {fileID: 7678092253608674348, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: DeathAnim.Array.data[3]
+      value: 
+      objectReference: {fileID: -2643395593711298502, guid: 53c63a678f59df44caa0f421b65f7408,
+        type: 3}
+    - target: {fileID: 7678092253608674349, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7283762153814389850, guid: 53c63a678f59df44caa0f421b65f7408,
+        type: 3}
     - target: {fileID: 7678092253608674350, guid: dea07a094341dad41b4684c5e28cf4a3,
         type: 3}
       propertyPath: m_RootOrder

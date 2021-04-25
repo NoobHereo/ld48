@@ -6,13 +6,10 @@ namespace game
     public enum PlayerSpriteState
     {
         IdleRight,
-        IdleLeft,
-        IdleUp,
-        IdleDown,
+        IdleLeft,    
         Right,
         Left,
-        Up,
-        Down
+        Death
     }
 
     public class PlayerAnimator : MonoBehaviour
@@ -20,11 +17,13 @@ namespace game
         private SpriteRenderer renderer;
         public Player player;
 
-        private PlayerSpriteState state = PlayerSpriteState.Down;
+        private PlayerSpriteState state = PlayerSpriteState.IdleRight;
 
         public Sprite[] MoveRight;
+        public Sprite[] DeathAnim;
 
         private int _rightLength;
+        private int _deathLength;
 
         private int animationCount;
         private float timer = 0;
@@ -35,6 +34,7 @@ namespace game
         {
             renderer = GetComponent<SpriteRenderer>();
             _rightLength = MoveRight.Length;
+            _deathLength = DeathAnim.Length;
         }
 
         private void Update()
@@ -60,7 +60,22 @@ namespace game
         private void Animate()
         {
             switch(state)
-            {              
+            {
+
+                case PlayerSpriteState.Death:
+                    bool animDone = false;
+                    AnimationSpeed = 0.35f;
+                    if (animationCount >= _deathLength)
+                    {
+                        renderer.sprite = DeathAnim[1];
+                        animDone = true;
+                    }
+
+                    if(!animDone)
+                        renderer.sprite = DeathAnim[animationCount];
+
+                    renderer.flipX = false;
+                    break;
 
                 case PlayerSpriteState.IdleRight:
                     renderer.sprite = MoveRight[0];

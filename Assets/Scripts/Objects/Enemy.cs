@@ -38,13 +38,14 @@ namespace game.Objects
                 Die(true);
 
             var tRB = target.gameObject.GetComponent<Rigidbody2D>();
+            Player player = target.GetComponent<Player>();
 
             Vector3 pos = tRB.position;
             Vector3 vel = tRB.velocity;
 
             float dist = (pos - transform.position).magnitude;
 
-            if (Vector2.Distance(transform.localPosition, target.localPosition) < 10)
+            if (Vector2.Distance(transform.localPosition, target.localPosition) < 10 && !player.IsDead)
             {
                 animator.UpdateSprite(EnemySpriteState.Moving);
 
@@ -52,6 +53,10 @@ namespace game.Objects
                     gameObject.transform.position = Vector2.MoveTowards(transform.position, pos + (dist / Speed) * vel, Speed * Time.deltaTime);
                 else
                     gameObject.transform.position = Vector2.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+            }
+            else if (player.IsDead)
+            {
+                Destroy(gameObject, 1f);
             }
             else
             {

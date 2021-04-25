@@ -3,6 +3,7 @@ using game.Items;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace game.Objects
 {
@@ -26,7 +27,6 @@ namespace game.Objects
         private BoxCollider2D _collider;
         public virtual ProjectileParameters ProjectileParameters { get; protected set; }
         public GameObject BombPrefab;
-        public Animator PlayerAnimation;
 
         //============= PROPERTIES =============//
         public WorldController WorldController;
@@ -39,6 +39,7 @@ namespace game.Objects
         private bool gamePaused = false;
         public int Bombs = 1;
         public bool IsAdmin;
+        public bool IsDead = false; // pepsi
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -114,70 +115,79 @@ namespace game.Objects
             var verticalAbs = Mathf.Abs(vertical);
 
             if (HP <= 0)
+            {
+                IsDead = true;
+                rb.velocity = Vector2.zero;
+                animator.UpdateSprite(PlayerSpriteState.Death);
                 OnDeath();
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor && !gamePaused)
+                {
+                    TrapDoorText.gameObject.SetActive(false);
+                    LastTrapDoor.Lock();
+                    loadWOrld(CurrentLevel + 1);
+                    WorldController.StartWave();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q) && Bombs > 0)
+                {
+                    var bombGO = Instantiate(BombPrefab);
+                    bombGO.transform.position = transform.localPosition;
+                    IncreaseStat(PlayerStats.BOMB, -1);
+                }
+
+                if (Input.GetKeyDown(KeyCode.P))
+                    PauseGame();
+
+                if (Input.GetAxisRaw("Fire1") > 0.1f && !gamePaused)
+                {
+                    Vector2 dir = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    Quaternion spriteRotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+
+                    ProjectileParameters = new ProjectileParameters()
+                    {
+                        Texture = ProjTexture,
+                        Speed = 15f,
+                        Damage = DMG,
+                        OrbitSpeed = 25f,
+                        OrbitLength = 0.5f,
+                        OrbitOffset = 0
+                    };
+
+                    var proj = ProjectileParameters.Clone();
+                    proj.Position = transform.position;
+                    proj.Rotatoin = rotation;
+
+                    if (Time.time - lastShoot > DPS)
+                    {
+                        Projectile.InstantiateProjectile(proj, spriteRotation);
+                        lastShoot = Time.time;
+                    }
+                }
+
+                if (horizontalAbs < 0.1f && verticalAbs < 0.1f && !gamePaused && IsDead)
+                {
+                    rb.velocity = Vector2.zero;
+                    animator.UpdateSprite(LastDir);
+                }
+
+                if (horizontalAbs > verticalAbs && !gamePaused && !IsDead)
+                {
+                    animator.UpdateSprite(horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left);
+                    LastDir = horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left;
+                }
+
+                rb.velocity = new Vector2(horizontal * Speed * Time.fixedDeltaTime, vertical * Speed * Time.fixedDeltaTime);
+            }
 
             if (Input.GetKeyDown(KeyCode.Escape))
                 Application.Quit();
 
-            if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor && !gamePaused)
-            {
-                TrapDoorText.gameObject.SetActive(false);
-                LastTrapDoor.Lock();
-                loadWOrld(CurrentLevel + 1);
-                WorldController.StartWave();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q) && Bombs > 0)
-            {
-                var bombGO = Instantiate(BombPrefab);
-                bombGO.transform.position = transform.localPosition;
-                IncreaseStat(PlayerStats.BOMB, -1);
-            }
-
-            if (Input.GetKeyDown(KeyCode.P))
-                PauseGame();
-
-            if (Input.GetAxisRaw("Fire1") > 0.1f && !gamePaused)
-            {
-                Vector2 dir = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                Quaternion spriteRotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
-
-                ProjectileParameters = new ProjectileParameters()
-                {
-                    Texture = ProjTexture,
-                    Speed = 15f,
-                    Damage = DMG,
-                    OrbitSpeed = 25f,
-                    OrbitLength = 0.5f,
-                    OrbitOffset = 0
-            };
-
-                var proj = ProjectileParameters.Clone();
-                proj.Position = transform.position;
-                proj.Rotatoin = rotation;
-                
-                if (Time.time - lastShoot > DPS)
-                {
-                    Projectile.InstantiateProjectile(proj, spriteRotation);
-                    lastShoot = Time.time;
-                }
-            }
-
-            if (horizontalAbs < 0.1f && verticalAbs < 0.1f && !gamePaused)
-            {
-                rb.velocity = Vector2.zero;
-                animator.UpdateSprite(LastDir);
-            }
-
-            if (horizontalAbs > verticalAbs && !gamePaused)
-            {
-                animator.UpdateSprite(horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left);
-                LastDir = horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left;
-            }
-
-            rb.velocity = new Vector2(horizontal * Speed * Time.fixedDeltaTime, vertical * Speed * Time.fixedDeltaTime);
+            
         }
 
         public void OnTriggerEnter2D(Collider2D collision)
@@ -193,7 +203,10 @@ namespace game.Objects
         public void TakeDamage(int dmg)
         {
             if (HP <= 0)
-                Debug.Log("Player ded..");
+            {
+                IsDead = true;
+                //OnDeath();
+            }
             
             HP -= dmg;
             HPSlider.value = HP;
@@ -203,6 +216,7 @@ namespace game.Objects
 
         private void dispatchHurtOverlay(bool dying)
         {
+            HurtOverlay.GetComponent<Animation>().Stop();
             HurtOverlay.SetActive(true);
             if (!dying)
                 HurtOverlay.GetComponent<Animation>().Play();
@@ -217,6 +231,12 @@ namespace game.Objects
 
         public void OnDeath()
         {
+            StartCoroutine(LoadDeathScreen());
+        }
+
+        private IEnumerator LoadDeathScreen()
+        {
+            yield return new WaitForSeconds(3f);
             SceneManager.LoadScene(2);
         }
 
