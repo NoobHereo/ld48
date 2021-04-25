@@ -11,10 +11,13 @@ namespace game.Items
         public Pickup Item;
         private SpriteRenderer renderer;
         public float Force;
+        public AudioClip BoomSFX;
+        private SoundManager soundManager;
 
         private void Start()
         {
             renderer = GetComponent<SpriteRenderer>();
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").gameObject.GetComponent<SoundManager>();
             renderer.sprite = Item.Texture;
             StartCoroutine(ExplosionCountdown());
         }
@@ -27,7 +30,7 @@ namespace game.Items
 
         public void Explode()
         {
-            Debug.Log("Boom!");
+            soundManager.PlaySFX(BoomSFX);
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.localPosition, ImpactRadius, TargetLayer);
 
             foreach (Collider2D obj in colliders)

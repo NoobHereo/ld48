@@ -12,6 +12,9 @@ namespace game.Objects
         private Rigidbody2D rb;
         public Slider HPSlider;
         public GameObject[] Items;
+        private SoundManager soundManager;
+        public AudioClip HitSFX;
+        public AudioClip DeathSFX;
 
         public float Speed = 150f;
         public int Health = 100;
@@ -21,6 +24,7 @@ namespace game.Objects
         private void Start()
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").gameObject.GetComponent<SoundManager>();
             animator = GetComponent<EnemyAnimator>();
             rb = GetComponent<Rigidbody2D>();
             rb.freezeRotation = true;
@@ -66,6 +70,7 @@ namespace game.Objects
 
         public void TakeDamage(int damage)
         {
+            soundManager.PlaySFX(HitSFX);
             Health -= damage;
             HPSlider.value = Health;
             if (Health <= 0 && !OutOfBounds())
@@ -84,6 +89,7 @@ namespace game.Objects
         public void Die(bool loot)
         {
             WorldController.OnWorldEntityDeath();
+            soundManager.PlaySFX(DeathSFX);
             if (loot)
             {
                 int randLoot = Random.Range(0, Items.Length);

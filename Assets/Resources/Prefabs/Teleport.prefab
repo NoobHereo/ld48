@@ -96,3 +96,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  TeleportSFX: {fileID: 8300000, guid: 3e9ad9a368d04ae4c83fd1a61a935a8d, type: 3}

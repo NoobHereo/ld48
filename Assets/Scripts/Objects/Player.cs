@@ -28,6 +28,11 @@ namespace game.Objects
         public virtual ProjectileParameters ProjectileParameters { get; protected set; }
         public GameObject BombPrefab;
         public GameObject TeleAimPrefab;
+        public SoundManager SoundManager;
+
+        //============= AUDIO =============//
+        public AudioClip PlayerHitSFX;
+        public AudioClip PlayerDeathSFX;
 
         //============= PROPERTIES =============//
         public WorldController WorldController;
@@ -42,6 +47,7 @@ namespace game.Objects
         public bool IsAdmin;
         public bool IsDead = false; // pepsi
         public bool Teleporting = false;
+        private bool deathTrigger = false;
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -63,12 +69,7 @@ namespace game.Objects
         public float DPS = 1f; // Seconds
 
         private void Start()
-        {
-            if (IsAdmin)
-            {
-                MaxHP = 999999;
-                DPS = 0.05f;
-            }
+        {            
             configComponenets();
         }
 
@@ -117,14 +118,15 @@ namespace game.Objects
             var vertical = Input.GetAxisRaw("Vertical");
             var verticalAbs = Mathf.Abs(vertical);
 
-            if (HP <= 0)
+            if (HP <= 0 && !deathTrigger)
             {
+                deathTrigger = true;
                 IsDead = true;
                 rb.velocity = Vector2.zero;
                 animator.UpdateSprite(PlayerSpriteState.Death);
                 OnDeath();
             }
-            else
+            else if (!deathTrigger && !IsDead)
             {
                 if (Input.GetKeyDown(KeyCode.E) && OnTrapDoor && !gamePaused)
                 {
@@ -180,13 +182,13 @@ namespace game.Objects
                     }
                 }
 
-                if (horizontalAbs < 0.1f && verticalAbs < 0.1f && !gamePaused && IsDead)
+                if (horizontalAbs < 0.1f && verticalAbs < 0.1f && !gamePaused)
                 {
                     rb.velocity = Vector2.zero;
                     animator.UpdateSprite(LastDir);
                 }
 
-                if (horizontalAbs > verticalAbs && !gamePaused && !IsDead)
+                if (horizontalAbs > verticalAbs && !gamePaused)
                 {
                     animator.UpdateSprite(horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left);
                     LastDir = horizontal > 0 ? PlayerSpriteState.Right : PlayerSpriteState.Left;
@@ -216,9 +218,10 @@ namespace game.Objects
             if (HP <= 0)
             {
                 IsDead = true;
-                //OnDeath();
+                OnDeath();               
             }
-            
+
+            SoundManager.PlaySFX(PlayerHitSFX);
             HP -= dmg;
             HPSlider.value = HP;
             bool dying = HP <= 50 ? true : false;
@@ -227,6 +230,7 @@ namespace game.Objects
 
         private void dispatchHurtOverlay(bool dying)
         {
+            SoundManager.PlaySFX(PlayerHitSFX);
             HurtOverlay.SetActive(true);
             if (!dying)
                 HurtOverlay.GetComponent<Animation>().Play();
@@ -241,6 +245,7 @@ namespace game.Objects
 
         public void OnDeath()
         {
+            SoundManager.PlaySFX(PlayerDeathSFX);
             StartCoroutine(LoadDeathScreen());
         }
 

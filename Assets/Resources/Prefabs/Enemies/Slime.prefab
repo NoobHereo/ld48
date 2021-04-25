@@ -591,6 +591,8 @@ MonoBehaviour:
   - {fileID: 5599268115109377640, guid: e6f8b0742b9aec545a074865eb4c24ad, type: 3}
   - {fileID: 5599268115109377640, guid: da9569892b87fd0478a4eea01dab9860, type: 3}
   - {fileID: 5599268115109377640, guid: 6d982db191d764d4c9d8b04d039f80ab, type: 3}
+  HitSFX: {fileID: 8300000, guid: 7eb9c7a4c866e7c4c8bad3b9e33084d3, type: 3}
+  DeathSFX: {fileID: 8300000, guid: 9cfc49a8217ca8c4487e0103e7a04eab, type: 3}
   Speed: 2
   Health: 10
   PredictiveMovement: 0

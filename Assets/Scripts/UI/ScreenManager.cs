@@ -11,9 +11,13 @@ namespace game.UI
         public Button PlayButton, CreditsButton, HelpButton, QuitButton;
         public Animation PlayerFallAnimation, BackgroundAnimation, PlayerWalkAnimation;
         public GameObject Logo;
+        public AudioClip PlayerHitGroundSFX;
+        public AudioClip PlayerMoveSFX;
+        private SoundManager soundManager;
 
         private void Start()
         {
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").gameObject.GetComponent<SoundManager>();
             PlayButton.onClick.AddListener(onPlayClick);
             CreditsButton.onClick.AddListener(onCreditsClick);
             HelpButton.onClick.AddListener(onHelpClick);
@@ -27,13 +31,14 @@ namespace game.UI
             HelpButton.gameObject.SetActive(false);
             QuitButton.gameObject.SetActive(false);
             Logo.SetActive(false);
-
+            soundManager.PlaySFX(PlayerHitGroundSFX);
             StartCoroutine(startFallAnim());
         }
 
         private IEnumerator startFallAnim()
         {
             yield return new WaitForEndOfFrame();
+
             PlayerWalkAnimation.clip = PlayerWalkAnimation.GetClip("PlayerStartFallAnimation");
             PlayerWalkAnimation.Play();
             StartCoroutine(startBackgroundAnimation());
@@ -49,6 +54,7 @@ namespace game.UI
 
         private IEnumerator startPlayerWalkAnimation()
         {
+            soundManager.PlaySFX(PlayerMoveSFX);
             PlayerWalkAnimation.clip = PlayerWalkAnimation.GetClip("PlayerWalkAnimation");
             PlayerWalkAnimation.Play();
             StatDataManager.Singleton.StartTime();

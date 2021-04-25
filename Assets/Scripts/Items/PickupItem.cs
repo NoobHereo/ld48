@@ -6,16 +6,21 @@ namespace game.Items
     {
         private SpriteRenderer renderer;
         public Pickup Item;
+        private SoundManager soundManager;
+        public AudioClip SFX;
 
         private void Start()
         {
             renderer = GetComponent<SpriteRenderer>();
+            soundManager = GameObject.FindGameObjectWithTag("SoundManager").gameObject.GetComponent<SoundManager>();
+
             if (Item != null)
                 renderer.sprite = Item.Texture;
         }
 
         public void Remove()
         {
+            soundManager.PlaySFX(SFX);
             Destroy(gameObject);
         }
     }

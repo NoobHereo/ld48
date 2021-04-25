@@ -53,6 +53,7 @@ MonoBehaviour:
     m_Bits: 256
   Item: {fileID: 11400000, guid: 902499a0af962a846a3ccdeaac234318, type: 2}
   Force: 500
+  BoomSFX: {fileID: 8300000, guid: 574af6ebf11c8b343a48e1fa5672b116, type: 3}
 --- !u!212 &1695588521869026103
 SpriteRenderer:
   m_ObjectHideFlags: 0

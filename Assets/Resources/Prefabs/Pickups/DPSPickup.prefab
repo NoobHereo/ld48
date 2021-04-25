@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: d8ed0168160298e4d9fb8ad93626d410, type: 2}
+  SFX: {fileID: 8300000, guid: adbe6a6de93b4ae4da8ab68a72115ef5, type: 3}
 --- !u!61 &9063145142004393702
 BoxCollider2D:
   m_ObjectHideFlags: 0

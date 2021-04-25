@@ -100,6 +100,9 @@ MonoBehaviour:
     type: 3}
   TeleAimPrefab: {fileID: 6420288306686279038, guid: c3edec86044fff64eb6a096dc2693a0c,
     type: 3}
+  SoundManager: {fileID: 0}
+  PlayerHitSFX: {fileID: 8300000, guid: e4fbb8047e906b54695f6802a5d7ee9f, type: 3}
+  PlayerDeathSFX: {fileID: 8300000, guid: a6bafd3b086470e4f914031291111747, type: 3}
   WorldController: {fileID: 0}
   ProjTexture: {fileID: -177568191593360070, guid: 53c63a678f59df44caa0f421b65f7408,
     type: 3}
