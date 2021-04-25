@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using game.Items;
 using UnityEngine.UI;
 
 namespace game.Objects
@@ -10,6 +11,7 @@ namespace game.Objects
         public WorldController WorldController;
         private Rigidbody2D rb;
         public Slider HPSlider;
+        public GameObject[] Items;
 
         public float Speed = 150f;
         public int Health = 100;
@@ -29,8 +31,11 @@ namespace game.Objects
 
         private void Update()
         {
-            if (Health <= 0)
-                Die();
+            if (OutOfBounds())
+                Die(false);
+
+            if (Health <= 0 && !OutOfBounds())
+                Die(true);
 
             var tRB = target.gameObject.GetComponent<Rigidbody2D>();
 
@@ -38,7 +43,6 @@ namespace game.Objects
             Vector3 vel = tRB.velocity;
 
             float dist = (pos - transform.position).magnitude;
-
 
             if (Vector2.Distance(transform.localPosition, target.localPosition) < 10)
             {
@@ -59,8 +63,8 @@ namespace game.Objects
         {
             Health -= damage;
             HPSlider.value = Health;
-            if (Health <= 0)
-                Die();
+            if (Health <= 0 && !OutOfBounds())
+                Die(true);
         }
 
         public void OnCollisionEnter2D(Collision2D collision)
@@ -72,11 +76,25 @@ namespace game.Objects
             }
         }
 
-        public void Die()
+        public void Die(bool loot)
         {
             WorldController.OnWorldEntityDeath();
             StatDataManager.Singleton.EnemyDeathEvent();
+            if (loot)
+            {
+                int randLoot = Random.Range(0, Items.Length);
+                var lootGo = Instantiate(Items[randLoot]);
+                lootGo.transform.position = transform.position;
+            }
             Destroy(gameObject);
+        }
+
+        public bool OutOfBounds()
+        {
+            if (transform.position.x > 35 || transform.position.x < -35 || transform.position.y > 35 || transform.position.y < -35)
+                return true;
+            else
+                return false;
         }
 
     }

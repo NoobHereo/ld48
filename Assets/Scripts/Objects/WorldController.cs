@@ -23,7 +23,7 @@ namespace game.Objects
         [SerializeField] private int difficulty = 1;        
         [SerializeField] private int remainingEnts;
         [SerializeField] private bool currentArenaDone = false;
-        public int EnemyCount = 10;
+        public int EnemyCount = 5;
 
         private void Start()
         {
@@ -39,7 +39,7 @@ namespace game.Objects
             mapGO.transform.localPosition = Vector2.zero;
             if (currentArenaDone)
                 currentArenaDone = false;            
-            EnemyCount += 5;
+            EnemyCount += 1;
             CurrentMap = mapGO;
             currentWorldId = mapId;
         }
@@ -91,7 +91,7 @@ namespace game.Objects
                     break;
 
                 default:
-                    entity = HardcoreEnemies[Random.Range(0, DifficultEnemies.Length)];
+                    entity = HardcoreEnemies[Random.Range(0, HardcoreEnemies.Length)];
                     break;
 
             }

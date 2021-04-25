@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1859295340407649620}
   - component: {fileID: 7958217806209194320}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HPSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2566283858601558863}
   - component: {fileID: 3900791986498164426}
   - component: {fileID: 3499769359936440662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 91695459497302749}
   - component: {fileID: 5687188576790576602}
   - component: {fileID: 5011386662820295488}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 5644355235945316540}
   - component: {fileID: 4476040206402746502}
   - component: {fileID: 3424331104677787987}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1834882227055751735}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 3109760341032016289}
   - component: {fileID: 5683893786720771309}
   - component: {fileID: 4178606322055180352}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4361439182872926135}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,8 +498,8 @@ GameObject:
   - component: {fileID: -374311763759244265}
   - component: {fileID: 7417222238159342537}
   - component: {fileID: 5184138144956343136}
-  m_Layer: 0
-  m_Name: Fly
+  m_Layer: 8
+  m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -558,8 +558,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 803323813
   m_SortingLayer: 1
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 7335755206505116134, guid: 53c63a678f59df44caa0f421b65f7408,
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 4756101107035844513, guid: 53c63a678f59df44caa0f421b65f7408,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -585,10 +585,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorldController: {fileID: 0}
   HPSlider: {fileID: 7958217806209194320}
-  Speed: 3
-  Health: 5
+  Items:
+  - {fileID: 5599268115109377640, guid: e7d17735830d5e846a22b1224cbed68f, type: 3}
+  - {fileID: 5599268115109377640, guid: bbf1fad48fd88374aacdba2cc79446de, type: 3}
+  - {fileID: 5599268115109377640, guid: e6f8b0742b9aec545a074865eb4c24ad, type: 3}
+  - {fileID: 5599268115109377640, guid: da9569892b87fd0478a4eea01dab9860, type: 3}
+  - {fileID: 5599268115109377640, guid: 6d982db191d764d4c9d8b04d039f80ab, type: 3}
+  Speed: 2
+  Health: 35
   PredictiveMovement: 0
-  DMG: 2
+  DMG: 30
 --- !u!114 &-374311763759244265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,8 +608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveAnim:
-  - {fileID: 7335755206505116134, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
-  - {fileID: -7135814912532872487, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: 4756101107035844513, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
+  - {fileID: 6457959714734619480, guid: 53c63a678f59df44caa0f421b65f7408, type: 3}
   AnimationSpeed: 0.25
 --- !u!61 &7417222238159342537
 BoxCollider2D:

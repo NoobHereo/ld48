@@ -1,10 +1,21 @@
 ﻿using TMPro;
+using game.Items;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace game.Objects
 {
+    public enum PlayerStats
+    {
+        HP,
+        DMG,
+        HP_REGEN,
+        BOMB,
+        SPD,
+        DPS
+    }
+
     public class Player : MonoBehaviour
     {
 
@@ -14,6 +25,7 @@ namespace game.Objects
         private PlayerAnimator animator;
         private BoxCollider2D _collider;
         public virtual ProjectileParameters ProjectileParameters { get; protected set; }
+        public GameObject BombPrefab;
 
         //============= PROPERTIES =============//
         public WorldController WorldController;
@@ -25,6 +37,7 @@ namespace game.Objects
         public int CurrentLevel = 0;
         public bool OnTrapDoor = false;
         private bool gamePaused = false;
+        public int Bombs = 1;
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -32,11 +45,13 @@ namespace game.Objects
         public TrapDoor LastTrapDoor;
         public Slider HPSlider;
         public TextMeshProUGUI PauseText;
+        public TextMeshProUGUI BombCountText;
 
         //============= STATS =============//
         public int HP = 100;
+        public int MaxHP = 100;
         public float Speed = 100f;
-        public int DMG = 100;
+        public int DMG = 10;
 
         private void Start()
         {
@@ -60,9 +75,12 @@ namespace game.Objects
             _collider.size = new Vector2(0.5f, 0.5f);
             _collider.isTrigger = false;
 
+            HP = MaxHP;
             HPSlider.minValue = 0;
             HPSlider.maxValue = HP;
             HPSlider.value = HP;
+
+            BombCountText.text = Bombs.ToString();
 
             loadWOrld(CurrentLevel);
         }
@@ -90,6 +108,13 @@ namespace game.Objects
                 LastTrapDoor.Lock();
                 loadWOrld(CurrentLevel + 1);
                 WorldController.StartWave();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q) && Bombs > 0)
+            {
+                var bombGO = Instantiate(BombPrefab);
+                bombGO.transform.position = transform.localPosition;
+                IncreaseStat(PlayerStats.BOMB, -1);
             }
 
             if (Input.GetKeyDown(KeyCode.P))
@@ -140,11 +165,11 @@ namespace game.Objects
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log("Trigger enter!");
-            if (collision.tag == "Enemy" && Attacking)
+            if (collision.tag == "Pickup")
             {
-                Enemy enemy = collision.GetComponent<Enemy>();
-                
+                PickupItem item = collision.GetComponent<PickupItem>();
+                PickupItem(item);
+                item.Remove();
             }           
         }
 
@@ -191,6 +216,72 @@ namespace game.Objects
                 Time.timeScale = 0;
                 PauseText.gameObject.SetActive(true);
                 gamePaused = true;
+            }
+        }
+
+        private void PickupItem(PickupItem pickup)
+        {
+            switch(pickup.Item.ItemStat)
+            {
+                case PlayerStats.HP:
+                case PlayerStats.HP_REGEN:
+                    IncreaseStat(PlayerStats.HP, 25f);
+                    break;
+
+                case PlayerStats.DMG:
+                    IncreaseStat(PlayerStats.DMG, 1f);
+                    break;
+
+                case PlayerStats.DPS:
+                    IncreaseStat(PlayerStats.DPS, 0.005f);
+                    break;
+
+                case PlayerStats.SPD:
+                    IncreaseStat(PlayerStats.SPD, 5f);
+                    break;
+
+                case PlayerStats.BOMB:
+                    IncreaseStat(PlayerStats.BOMB, 1f);
+                    break;
+            }
+        }
+
+        public void IncreaseStat(PlayerStats stat, float gain)
+        {
+            switch (stat)
+            {
+                case PlayerStats.HP:
+                case PlayerStats.HP_REGEN:
+                    if (HP >= MaxHP)
+                        break;
+                    else if (HP + gain > MaxHP)
+                    {
+                        HP = MaxHP;
+                        HPSlider.value = HP;
+                    }
+                    else
+                    {
+                        HP += (int)gain;
+                        HPSlider.value = HP;
+                    }
+                    break;
+
+                case PlayerStats.DMG:
+                    DMG += (int)gain;
+                    break;
+
+                case PlayerStats.DPS:
+                    Cooldown -= gain;
+                    break;
+
+                case PlayerStats.SPD:
+                    Speed += gain;
+                    break;
+
+                case PlayerStats.BOMB:
+                    Bombs += (int)gain;
+                    BombCountText.text = Bombs.ToString();
+                    break;
             }
         }
     }
