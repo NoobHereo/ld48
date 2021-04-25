@@ -6,6 +6,7 @@ namespace game.Objects
 {
     public class WorldController : MonoBehaviour
     {
+        //============= INTERACTABLES =============//
         public SuperMap[] Levels;
         public GameObject Trapdoor;
 
@@ -15,6 +16,8 @@ namespace game.Objects
         public GameObject[] Bossess;
 
         public GameObject CurrentMap;
+
+        //============= STATS =============//
         [SerializeField] private int currentWorldId;
         [SerializeField] private int difficulty = 1;        
         [SerializeField] private int remainingEnts;

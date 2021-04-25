@@ -7,6 +7,7 @@ namespace game.UI
 {
     public class ScreenManager : MonoBehaviour
     {
+        //============= COMPONENTS =============//
         public Button PlayButton, CreditsButton, HelpButton, QuitButton;
         public Animation PlayerFallAnimation, BackgroundAnimation, PlayerWalkAnimation;
         public GameObject Logo;
@@ -56,12 +57,12 @@ namespace game.UI
 
         private void onCreditsClick()
         {
-
+            // TODO: Add something here.
         }
 
         private void onHelpClick()
         {
-
+            // TODO: Add something here.
         }
 
         private void onQuitClick()

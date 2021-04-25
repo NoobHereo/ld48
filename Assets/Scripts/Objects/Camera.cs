@@ -4,8 +4,11 @@ namespace game.Objects
 {
     public class Camera : MonoBehaviour
     {
+        //============= COMPONENTS =============//
         private Transform target;
-        private bool targetSet = false;
+
+        //============= PROPERTIES =============//
+        [SerializeField] private bool targetSet = false;
         public Vector3 Offset;
 
         public void SetTarget(Transform target)

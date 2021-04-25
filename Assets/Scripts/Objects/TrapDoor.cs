@@ -4,9 +4,12 @@ namespace game.Objects
 {
     public class TrapDoor : MonoBehaviour
     {
+        //============= COMPONENTS =============//
         private SpriteRenderer renderer;
         public Sprite Locked;
         public Sprite Unlocked;
+
+        //============= PROPERTIES =============//
         private bool unlocked = false;
 
         private void Start()

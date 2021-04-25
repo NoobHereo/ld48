@@ -5,15 +5,20 @@ namespace game.Objects
     [SerializeField]
     public class ProjectileParameters
     {
+        //============= COMPONENTS =============//
         public Sprite Texture;
+
+        //============= PROPERTIES =============//
         public Vector2 Position;
         public Quaternion Rotatoin = Quaternion.identity;
+
+        //============= STATS =============//
         public float Speed = 25f;
         public int Damage = 10;
-
         public float OrbitSpeed = 5f;
         public float OrbitLength = 10f;
         public float OrbitOffset = 0;
+
 
         public ProjectileParameters Clone()
         {

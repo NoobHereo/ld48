@@ -7,6 +7,7 @@ namespace game.UI
 {
     public class DeathScreenManager : MonoBehaviour
     {
+        //============= COMPONENTS =============//
         public TextMeshProUGUI ScoreText, LevelText, KillsText, TimeText;
         public Button ReturnButton;
 
