@@ -42,6 +42,7 @@ namespace game.Objects
             EnemyCount += 1;
             CurrentMap = mapGO;
             currentWorldId = mapId;
+            StatDataManager.Singleton.LevelIncrease();
         }
 
         public void StartWave()
@@ -113,7 +114,7 @@ namespace game.Objects
         public void OnWorldEntityDeath()
         {
             remainingEnts--;
-            Debug.Log("One enemy down, " + remainingEnts + " to go!");
+            StatDataManager.Singleton.EnemyDeathEvent();
         }
 
         private void Update()

@@ -96,15 +96,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa43b6d842159e4a97a9ced3dae3ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BombPrefab: {fileID: 0}
   WorldController: {fileID: 0}
   ProjTexture: {fileID: -177568191593360070, guid: 53c63a678f59df44caa0f421b65f7408,
     type: 3}
   LastDir: 0
   Attacking: 0
-  Cooldown: 0.15
   CurrentLevel: 0
   OnTrapDoor: 0
   Bombs: 1
+  IsAdmin: 0
   HurtOverlay: {fileID: 0}
   TrapDoorText: {fileID: 0}
   LastTrapDoor: {fileID: 0}
@@ -115,6 +116,7 @@ MonoBehaviour:
   MaxHP: 100
   Speed: 200
   DMG: 10
+  DPS: 1
 --- !u!114 &7678092253608674348
 MonoBehaviour:
   m_ObjectHideFlags: 0

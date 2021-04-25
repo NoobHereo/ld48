@@ -79,7 +79,6 @@ namespace game.Objects
         public void Die(bool loot)
         {
             WorldController.OnWorldEntityDeath();
-            StatDataManager.Singleton.EnemyDeathEvent();
             if (loot)
             {
                 int randLoot = Random.Range(0, Items.Length);

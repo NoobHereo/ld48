@@ -26,18 +26,19 @@ namespace game.Objects
         private BoxCollider2D _collider;
         public virtual ProjectileParameters ProjectileParameters { get; protected set; }
         public GameObject BombPrefab;
+        public Animator PlayerAnimation;
 
         //============= PROPERTIES =============//
         public WorldController WorldController;
         public Sprite ProjTexture;
         public PlayerSpriteState LastDir;
         public bool Attacking = false;
-        private float lastShoot;
-        public float Cooldown = 1f; // Seconds
+        private float lastShoot;      
         public int CurrentLevel = 0;
         public bool OnTrapDoor = false;
         private bool gamePaused = false;
         public int Bombs = 1;
+        public bool IsAdmin;
 
         //============= UI =============//
         public GameObject HurtOverlay;
@@ -52,9 +53,15 @@ namespace game.Objects
         public int MaxHP = 100;
         public float Speed = 100f;
         public int DMG = 10;
+        public float DPS = 1f; // Seconds
 
         private void Start()
         {
+            if (IsAdmin)
+            {
+                MaxHP = 999999;
+                DPS = 0.05f;
+            }
             configComponenets();
         }
 
@@ -141,7 +148,7 @@ namespace game.Objects
                 proj.Position = transform.position;
                 proj.Rotatoin = rotation;
                 
-                if (Time.time - lastShoot > Cooldown)
+                if (Time.time - lastShoot > DPS)
                 {
                     Projectile.InstantiateProjectile(proj, spriteRotation);
                     lastShoot = Time.time;
@@ -271,7 +278,7 @@ namespace game.Objects
                     break;
 
                 case PlayerStats.DPS:
-                    Cooldown -= gain;
+                    DPS -= gain;
                     break;
 
                 case PlayerStats.SPD:
@@ -283,6 +290,8 @@ namespace game.Objects
                     BombCountText.text = Bombs.ToString();
                     break;
             }
+
+            StatDataManager.Singleton.ItemPicked();
         }
     }
 }
