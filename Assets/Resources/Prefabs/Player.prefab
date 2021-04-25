@@ -96,17 +96,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa43b6d842159e4a97a9ced3dae3ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjTexture: {fileID: 2823388173963058815, guid: d530d5931fd43f44391a59ca9043b00c,
-    type: 3}
   WorldController: {fileID: 0}
-  HurtOverlay: {fileID: 0}
+  ProjTexture: {fileID: -8330994224451563945, guid: d530d5931fd43f44391a59ca9043b00c,
+    type: 3}
+  LastDir: 0
   Attacking: 0
-  Cooldown: 1
+  Cooldown: 0.15
   CurrentLevel: 0
+  OnTrapDoor: 0
+  HurtOverlay: {fileID: 0}
+  TrapDoorText: {fileID: 0}
+  LastTrapDoor: {fileID: 0}
+  HPSlider: {fileID: 0}
   HP: 150
   Speed: 200
   DMG: 10
-  LastDir: 0
 --- !u!114 &7678092253608674348
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,7 +55,7 @@ namespace game.Objects
                 if (currentWorldId <= 0)
                     randomEnt = GetRandomEnemy(1, false);
                 else
-                    randomEnt = GetRandomEnemy(currentWorldId, false);
+                    randomEnt = GetRandomEnemy(currentWorldId + 1, false);
 
 
                 StartCoroutine(SpawnEntity(randomEnt, new Vector3(x, y, 0), Quaternion.identity));      
@@ -78,16 +78,21 @@ namespace game.Objects
             switch (difficulty)
             {
                 case 1:
+                case 2:
+                case 3:
                     entity = EasyEnemies[Random.Range(0, EasyEnemies.Length)]; // Easy
                     break;
 
-                case 2:
-                    entity = EasyEnemies[Random.Range(0, EasyEnemies.Length)]; // Difficult
+                case 4:
+                case 5:
+                case 6:      
+                    entity = DifficultEnemies[Random.Range(0, DifficultEnemies.Length)]; // Difficult
                     break;
 
-                case 3:
-                    entity = EasyEnemies[Random.Range(0, EasyEnemies.Length)]; // Hardcore
+                default:
+                    entity = HardcoreEnemies[Random.Range(0, DifficultEnemies.Length)];
                     break;
+
             }
 
             return entity;
@@ -95,8 +100,8 @@ namespace game.Objects
 
         private IEnumerator SpawnEntity(GameObject entity, Vector3 position, Quaternion rotation)
         {
-            float minSpawnT = 5f / difficulty;
-            float maxSpawnT = 15f / difficulty;
+            float minSpawnT = 5f;
+            float maxSpawnT = 10f;
 
             entity.GetComponent<Enemy>().WorldController = this;
             float randomTime = Random.Range(minSpawnT, maxSpawnT);
