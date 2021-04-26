@@ -105,7 +105,7 @@ namespace game.Objects
 
         public bool OutOfBounds()
         {
-            if (transform.position.x > 35 || transform.position.x < -35 || transform.position.y > 35 || transform.position.y < -35)
+            if (transform.position.x < 5.6f || transform.position.x > 24f || transform.position.y < -23.6 || transform.position.y > -6)
                 return true;
             else
                 return false;

@@ -3800,6 +3800,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
         type: 3}
+      propertyPath: HP
+      value: 99999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: DMG
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: MaxHP
+      value: 99999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
       propertyPath: DMGText
       value: 
       objectReference: {fileID: 775236090}
