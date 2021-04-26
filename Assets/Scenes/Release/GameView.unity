@@ -1090,7 +1090,7 @@ MonoBehaviour:
   - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
   - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
   - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
-  - {fileID: -7722119401927012502, guid: f17279488843a5b45869f8010e262d5d, type: 3}
+  - {fileID: 798640019052817849, guid: 57a51fa42eaa20945bb8e89b6e1a12f4, type: 3}
   Trapdoor: {fileID: 1274330774}
   EasyEnemies:
   - {fileID: 7445400573916004405, guid: f8ccf8c2ce2ea4246bfc8f4f223ce0cb, type: 3}
@@ -1119,6 +1119,7 @@ MonoBehaviour:
   - {fileID: 7445400573916004405, guid: dd56ab9aee22ac04699f127de2e60695, type: 3}
   - {fileID: 7445400573916004405, guid: 8bab0def746b19f429e271a1beb19da1, type: 3}
   - {fileID: 7445400573916004405, guid: f8ccf8c2ce2ea4246bfc8f4f223ce0cb, type: 3}
+  VoidEntity: {fileID: 0}
   CurrentMap: {fileID: 0}
   currentWorldId: 0
   difficulty: 1
@@ -3801,17 +3802,22 @@ PrefabInstance:
     - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
         type: 3}
       propertyPath: HP
-      value: 99999999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
         type: 3}
       propertyPath: DMG
-      value: 25
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
+        type: 3}
+      propertyPath: DPS
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
         type: 3}
       propertyPath: MaxHP
-      value: 99999999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7678092253608674351, guid: dea07a094341dad41b4684c5e28cf4a3,
         type: 3}

@@ -15,6 +15,7 @@ namespace game.Objects
         public GameObject[] DifficultEnemies;
         public GameObject[] HardcoreEnemies;
         public GameObject[] Bossess;
+        public GameObject VoidEntity;
 
         public GameObject CurrentMap;
 
@@ -38,11 +39,22 @@ namespace game.Objects
             var mapGO = GameObject.Instantiate(Levels[mapId].gameObject);
             mapGO.transform.localPosition = Vector2.zero;
             if (currentArenaDone)
-                currentArenaDone = false;            
-            EnemyCount += 1;
-            CurrentMap = mapGO;
-            currentWorldId = mapId;
-            StatDataManager.Singleton.LevelIncrease();
+                currentArenaDone = false;  
+            
+            if(mapId == 19)
+            {
+                EnemyCount = 1;
+                CurrentMap = mapGO;
+                currentWorldId = mapId;
+                StatDataManager.Singleton.LevelIncrease();
+            }
+            else
+            {
+                EnemyCount += 1;
+                CurrentMap = mapGO;
+                currentWorldId = mapId;
+                StatDataManager.Singleton.LevelIncrease();
+            }
         }
 
         public void StartWave()
@@ -50,17 +62,27 @@ namespace game.Objects
             remainingEnts = EnemyCount;
             for (int i = 0; i < EnemyCount; i++)
             {
-                float x = Random.Range(6.25f, 24f);
-                float y = Random.Range(-6.25f, -23f);
-                GameObject randomEnt;
+                if (currentWorldId == 19)
+                {
+                    float x = 15f;
+                    float y = -5f;
 
-                if (currentWorldId <= 0)
-                    randomEnt = GetRandomEnemy(1, false);
+                    StartCoroutine(SpawnEntity(VoidEntity, new Vector3(x, y, 0), Quaternion.identity));
+                }
                 else
-                    randomEnt = GetRandomEnemy(currentWorldId + 1, false);
+                {
+                    float x = Random.Range(6.25f, 24f);
+                    float y = Random.Range(-6.25f, -23f);
+                    GameObject randomEnt;
+
+                    if (currentWorldId <= 0)
+                        randomEnt = GetRandomEnemy(1, false);
+                    else
+                        randomEnt = GetRandomEnemy(currentWorldId + 1, false);
 
 
-                StartCoroutine(SpawnEntity(randomEnt, new Vector3(x, y, 0), Quaternion.identity));      
+                    StartCoroutine(SpawnEntity(randomEnt, new Vector3(x, y, 0), Quaternion.identity));
+                }
             }
         }
 

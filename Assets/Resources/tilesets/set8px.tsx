@@ -61,9 +61,9 @@
    <object id="1" x="0.15625" y="0.21875" width="7.65625" height="7.21875"/>
   </objectgroup>
  </tile>
- <tile id="55">
+ <tile id="54">
   <objectgroup draworder="index" id="2">
-   <object id="1" x="0.0709639" y="0.118273" width="7.71141" height="7.6641"/>
+   <object id="1" x="0.141928" y="0.141928" width="7.6641" height="7.68776"/>
   </objectgroup>
  </tile>
  <tile id="65">
