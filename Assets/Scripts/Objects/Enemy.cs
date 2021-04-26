@@ -84,6 +84,10 @@ namespace game.Objects
                 Player player = collision.gameObject.GetComponent<Player>();                
                 player.TakeDamage(DMG);
             }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
 
         public void Die(bool loot)

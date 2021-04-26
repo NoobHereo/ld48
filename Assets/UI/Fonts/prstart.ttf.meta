@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc9c56fbb0eceaa49980545f1e9afd32
+guid: cb9a28c0269535b43ae4cdeaee1a7781
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Cvvpro
+  fontName: Press Start
   fontNames:
-  - Cvvpro
+  - Press Start
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

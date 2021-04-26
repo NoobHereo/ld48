@@ -134,6 +134,12 @@ namespace game.Objects
             {
                 currentArenaDone = true;
                 difficulty++;
+                if (difficulty == 19)
+                {
+                    Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                    player.HasWon = true;
+                }
+                    
                 UnlockNextLevel();
             }
         }

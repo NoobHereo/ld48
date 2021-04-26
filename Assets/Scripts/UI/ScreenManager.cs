@@ -57,7 +57,6 @@ namespace game.UI
             soundManager.PlaySFX(PlayerMoveSFX);
             PlayerWalkAnimation.clip = PlayerWalkAnimation.GetClip("PlayerWalkAnimation");
             PlayerWalkAnimation.Play();
-            StatDataManager.Singleton.StartTime();
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(1);
         }

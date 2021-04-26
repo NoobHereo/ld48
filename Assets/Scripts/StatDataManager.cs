@@ -9,7 +9,6 @@ namespace game
         public int level;
         public int kills;
         public int items;
-        public float time;
     }
 
     public class StatDataManager : MonoBehaviour
@@ -20,24 +19,11 @@ namespace game
         public int Level { get; private set; } = 0;
         public int TotalKills { get; private set; } = 0;
         public int Items { get; private set; } = 0;
-        // public float TimeSpent { get; private set; } = 0;
-
-        private bool timeRunning = false;
-        private float timer = 0;
 
         private void Start()
         {
             Singleton = this;
             DontDestroyOnLoad(Singleton);
-        }
-
-        private void FixedUpdate()
-        {
-            if (timeRunning)
-            {               
-                timer += Time.fixedDeltaTime;
-            }
-           
         }
 
         public void EnemyDeathEvent()
@@ -57,11 +43,6 @@ namespace game
             Level++;
         }
 
-        public void StartTime()
-        {
-            timeRunning = true;
-        }
-
         public GameData GetGameData()
         {
             GameData data = new GameData()
@@ -69,8 +50,7 @@ namespace game
                 score = Score,
                 level = Level,
                 kills = TotalKills,
-                items = Items,
-                time = timer
+                items = Items
             };
 
             return data;
@@ -82,8 +62,7 @@ namespace game
         }
 
         public void OnPlayerDeath()
-        {
-            timeRunning = false;            
+        {          
             SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
         }
     }

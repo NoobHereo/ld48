@@ -73,7 +73,7 @@ namespace game.Objects
 
         //============= STATS =============//
         public int HP = 100;
-        public int MaxHP = 999999;
+        public int MaxHP = 100;
         public float Speed = 100f;
         public int DMG;
         public float DPS; // Seconds
